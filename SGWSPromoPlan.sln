@@ -1,0 +1,110 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SGWSPromoPlan", "SGWSPromoPlan", "{E353D6AA-4371-4692-BF78-FC9EB6C120A2}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.2"
+		ProjectReferences = "{094a84bd-c04d-4781-a746-542a64b95096}|SGWSPromoPlan.DAL.dll;{86b1477d-9942-4748-a7e2-b8b638387491}|SGWSPromoPlan.BAL.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49995"
+		Debug.AspNetCompiler.PhysicalPath = "SGWSPromoPlan\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49995\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49995"
+		Release.AspNetCompiler.PhysicalPath = "SGWSPromoPlan\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49995\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49995"
+		SlnRelativePath = "SGWSPromoPlan\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGWSPromoPlan.DAL", "SGWSPromoPlan.DAL\SGWSPromoPlan.DAL.csproj", "{094A84BD-C04D-4781-A746-542A64B95096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGWSPromoPlan.BAL", "SGWSPromoPlan.BAL\SGWSPromoPlan.BAL.csproj", "{86B1477D-9942-4748-A7E2-B8B638387491}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{836C3997-BC6E-448E-A9F8-A70ED3E8C000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Debug|x86.Build.0 = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Release|x86.ActiveCfg = Debug|Any CPU
+		{E353D6AA-4371-4692-BF78-FC9EB6C120A2}.Release|x86.Build.0 = Debug|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Debug|x86.Build.0 = Debug|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Release|x86.ActiveCfg = Release|Any CPU
+		{094A84BD-C04D-4781-A746-542A64B95096}.Release|x86.Build.0 = Release|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Debug|x86.Build.0 = Debug|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Release|x86.ActiveCfg = Release|Any CPU
+		{86B1477D-9942-4748-A7E2-B8B638387491}.Release|x86.Build.0 = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|x86.Build.0 = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|x86.ActiveCfg = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|x86.Build.0 = Release|Any CPU
+		{836C3997-BC6E-448E-A9F8-A70ED3E8C000}.Release|x86.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F31D6C22-7BDC-4F69-8A43-234D4F1DFF90}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://greenlightconsulting.visualstudio.com/
+		SccLocalPath0 = .
+		SccWebProject1 = true
+		SccProjectUniqueName1 = SGWSPromoPlan
+		SccProjectName1 = SGWSPromoPlan
+		SccLocalPath1 = SGWSPromoPlan
+		SccProjectEnlistmentChoice1 = 2
+		SccProjectUniqueName2 = SGWSPromoPlan.DAL\\SGWSPromoPlan.DAL.csproj
+		SccProjectName2 = SGWSPromoPlan.DAL
+		SccLocalPath2 = SGWSPromoPlan.DAL
+		SccProjectUniqueName3 = SGWSPromoPlan.BAL\\SGWSPromoPlan.BAL.csproj
+		SccProjectName3 = SGWSPromoPlan.BAL
+		SccLocalPath3 = SGWSPromoPlan.BAL
+		SccProjectUniqueName4 = Database\\Database.sqlproj
+		SccProjectName4 = Database
+		SccLocalPath4 = Database
+	EndGlobalSection
+EndGlobal

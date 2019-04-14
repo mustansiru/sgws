@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'SegoeUI';
+    src: url('../../font/SegoeUI.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SegoeUI';
+    src: url('../../font/SegoeUI.eot');
+    src: url('../../font/SegoeUI.eot') format('embedded-opentype'), url('../../font/SegoeUI.woff') format('woff'), url('../../font/SegoeUI.woff') format('woff'), url('../../font/SegoeUI.ttf') format('truetype'), url('../../font/SegoeUI.svg#SegoeUI') format('svg');
+}
+
+.graphite {
+    float: left; /*overflow-y:scroll; height:100%;*/
+    width: 100%;
+    padding-top: 0px;
+}
+
+    .graphite .accordion {
+        font: bold 14px SegoeUI;
+        border-top: 1px solid #111;
+        border-right: 1px solid #111;
+        border-left: 1px solid #111;
+    }
+
+        .graphite .accordion, .graphite .accordion li {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+            .graphite .accordion a {
+                padding: 15px 25px 15px 10px;
+                background: #3e3e3e /*url(images/plus_icon.png) no-repeat 98% center*/;
+                text-decoration: none;
+                display: block;
+                color: #FFF;
+                border-bottom: 1px solid #222;
+                position: relative;
+                min-height: 20px;
+            }
+
+                .graphite .accordion a .dash {
+                    display: inline-block;
+                    height: 25px;
+                    width: 30px;
+                    vertical-align: middle;
+                    margin-right: 10px;
+                }
+
+                .graphite .accordion a .dash1 {
+                    display: inline-block;
+                    height: 25px;
+                    width: 30px;
+                    vertical-align: middle;
+                    margin-right: 10px;
+                    margin-left: 5px;
+                }
+
+            .graphite .accordion ul a {
+                background: #424549;
+            }
+
+            .graphite .accordion a.dcjq-parent, .graphite .accordion a.dcjq-parent:hover {
+            }
+
+                .graphite .accordion a.dcjq-parent.active {
+                    background: #2877bb url(../../images/menu-arrow.png) no-repeat 102% center;
+                }
+
+            .graphite .accordion a .dcjq-icon {
+                position: absolute;
+                top: 50%;
+                left: 14px;
+                width: 34px;
+                margin-top: -17px;
+                height: 34px;
+                background: url(images/arrow_black_right.png) no-repeat 0 center;
+            }
+
+            .graphite .accordion a.dcjq-parent.active .dcjq-icon {
+                background: url(images/arrow_black_down.png) no-repeat 0 center;
+            }
+
+            .graphite .accordion a:hover {
+                background: #2877bb url(../../images/menu-arrow.png) no-repeat 102% center;
+                color: #fff;
+            }
+
+            .graphite .accordion a:active {
+            }
+
+            .graphite .accordion a .dcjq-icon {
+                display: none;
+            }
+
+.dcjq-count {
+    display: none;
+}
+
+.graphite .accordion ul a {
+    padding: 10px 20px 10px 15px;
+    background: #2a2d33;
+    text-decoration: none;
+    display: block;
+    color: #FFF;
+    border-bottom: 1px solid #222;
+    position: relative;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+    .graphite .accordion ul a:hover {
+        background:  #656c7e url(../../images/menu-arrow.png) no-repeat 102% center;
+        text-decoration: none;
+    }
+     .graphite .accordion ul li a.active {
+        background:  #656c7e url(../../images/menu-arrow.png) no-repeat 102% center;
+        text-decoration: none;
+    }
+
+    .graphite .accordion ul a.dcjq-parent.active {
+        background:#656c7e url(../../images/menu-arrow.png) no-repeat 102% center;
+    }
+
+
+.graphite .accordion ul ul a {
+    padding: 8px 10px 8px 15px;
+    background: #2a2d33 url(images/left_arrow2.png) no-repeat 98% center;
+    text-decoration: none;
+    display: block;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: normal;
+    border-bottom: 1px solid #656c7e;
+    position: relative;
+}
+
+    .graphite .accordion ul ul a:hover {
+        background: #2a2d33 url(images/left_arrow2.png) no-repeat 98% center;
+        text-decoration: none;
+    }
+
+    .graphite .accordion ul ul a.dcjq-parent.active {
+        background: #2a2d33 url(images/left_arrow.png) no-repeat 98% center;
+    }
+
+@media only screen and (max-width: 830px) {
+    .graphite {
+        padding-bottom: 141px;
+    }
+}

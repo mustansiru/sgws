@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[Expense_Import] (
+    [Id]                 BIGINT        IDENTITY (1, 1) NOT NULL,
+    [Record]             VARCHAR (50)  NULL,
+    [Month]              VARCHAR (20)  NULL,
+    [Date]               VARCHAR (50)  NULL,
+    [Province]           VARCHAR (50)  NULL,
+    [ExpenseType]        VARCHAR (200) NULL,
+    [InvoiceNo]          VARCHAR (100) NULL,
+    [Vendor]             VARCHAR (200) NULL,
+    [InvoiceDescription] VARCHAR (500) NULL,
+    [Employee]           VARCHAR (200) NULL,
+    [Supplier]           VARCHAR (200) NULL,
+    [Brand]              VARCHAR (200) NULL,
+    [ProgramType]        VARCHAR (50)  NULL,
+    [SupplierVendorName] VARCHAR (200) NULL,
+    [RemyClassification] VARCHAR (200) NULL,
+    [Patron_GL_Account]  VARCHAR (200) NULL,
+    [Grant_Applicable]   VARCHAR (10)  NULL,
+    [Supplier_Coding]    VARCHAR (200) NULL,
+    [Amount_Net]         VARCHAR (50)  NULL,
+    [Tax]                VARCHAR (50)  NULL,
+    [Total]              VARCHAR (50)  NULL,
+    [BillBack]           VARCHAR (200) NULL,
+    [AP_Structure]       VARCHAR (50)  NULL,
+    CONSTRAINT [PK_Expense_Import] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

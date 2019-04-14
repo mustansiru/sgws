@@ -1,0 +1,847 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+            width: 160px;
+            background-color: #23282d;
+        }
+
+        #adminmenuback {
+            position: fixed;
+            top: 0;
+            bottom: -120px;
+            z-index: 1;
+        }
+
+        #adminmenu {
+            clear: left;
+            margin: 12px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .folded #adminmenu, .folded #adminmenu li.menu-top, .folded #adminmenuback, .folded #adminmenuwrap {
+            width: 36px;
+        }
+
+        .icon16 {
+            height: 18px;
+            width: 18px;
+            padding: 6px;
+            margin: -6px 0 0 -8px;
+            float: left;
+        }
+
+            .icon16:before {
+                color: #82878c;
+                font: 400 20px/1 dashicons;
+                speak: none;
+                padding: 6px 0;
+                height: 34px;
+                width: 20px;
+                display: inline-block;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                transition: all .1s ease-in-out;
+            }
+
+            .icon16.icon-dashboard:before {
+                content: "\f226";
+            }
+
+            .icon16.icon-post:before {
+                content: "\f109";
+            }
+
+            .icon16.icon-media:before {
+                content: "\f104";
+            }
+
+            .icon16.icon-links:before {
+                content: "\f103";
+            }
+
+            .icon16.icon-page:before {
+                content: "\f105";
+            }
+
+            .icon16.icon-comments:before {
+                content: "\f101";
+                margin-top: 1px;
+            }
+
+            .icon16.icon-appearance:before {
+                content: "\f100";
+            }
+
+            .icon16.icon-plugins:before {
+                content: "\f106";
+            }
+
+            .icon16.icon-users:before {
+                content: "\f110";
+            }
+
+            .icon16.icon-tools:before {
+                content: "\f107";
+            }
+
+            .icon16.icon-settings:before {
+                content: "\f108";
+            }
+
+            .icon16.icon-site:before {
+                content: "\f541";
+            }
+
+            .icon16.icon-generic:before {
+                content: "\f111";
+            }
+
+            .icon16.icon-appearance, .icon16.icon-comments, .icon16.icon-dashboard, .icon16.icon-generic, .icon16.icon-links, .icon16.icon-media, .icon16.icon-page, .icon16.icon-plugins, .icon16.icon-post, .icon16.icon-settings, .icon16.icon-site, .icon16.icon-tools, .icon16.icon-users, .menu-icon-appearance div.wp-menu-image, .menu-icon-comments div.wp-menu-image, .menu-icon-dashboard div.wp-menu-image, .menu-icon-generic div.wp-menu-image, .menu-icon-links div.wp-menu-image, .menu-icon-media div.wp-menu-image, .menu-icon-page div.wp-menu-image, .menu-icon-plugins div.wp-menu-image, .menu-icon-post div.wp-menu-image, .menu-icon-settings div.wp-menu-image, .menu-icon-site div.wp-menu-image, .menu-icon-tools div.wp-menu-image, .menu-icon-users div.wp-menu-image {
+                background-image: none !important;
+            }
+
+        #adminmenuwrap {
+            position: relative;
+            float: left;
+            z-index: 9990;
+        }
+
+        #adminmenu * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #adminmenu li {
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        #adminmenu a {
+            display: block;
+            line-height: 18px;
+            padding: 2px 5px;
+            color: #eee;
+        }
+
+        #adminmenu .wp-submenu a {
+            color: #b4b9be;
+            color: rgba(240,245,250,.7);
+        }
+
+            #adminmenu .wp-submenu a:focus, #adminmenu .wp-submenu a:hover {
+                background: 0 0;
+            }
+
+            #adminmenu .wp-submenu a:focus, #adminmenu .wp-submenu a:hover, #adminmenu a:hover, #adminmenu li.menu-top > a:focus {
+                color: #00b9eb;
+            }
+
+        #adminmenu li.menu-top {
+            border: none;
+            min-height: 34px;
+            position: relative;
+        }
+
+        #adminmenu .wp-submenu {
+            list-style: none;
+            position: absolute;
+            top: -1000em;
+            left: 160px;
+            overflow: visible;
+            word-wrap: break-word;
+        }
+
+        #adminmenu .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu, .folded #adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+            padding: 7px 0 8px;
+            z-index: 9999;
+            background-color: #32373c;
+            box-shadow: 0 3px 5px rgba(0,0,0,.2);
+        }
+
+        #adminmenu a.menu-top:focus + .wp-submenu, .js #adminmenu .opensub .wp-submenu, .js #adminmenu .sub-open, .no-js li.wp-has-submenu:hover .wp-submenu {
+            top: -1px;
+        }
+
+        #adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus + .wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu {
+            position: relative;
+            z-index: 3;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            border: 0;
+            margin-top: 0;
+            box-shadow: none;
+            background-color: #32373c;
+        }
+
+        #adminmenu li.menu-top:hover, #adminmenu li.opensub > a.menu-top, #adminmenu li > a.menu-top:focus {
+            position: relative;
+            background-color: #191e23;
+            color: #00b9eb;
+        }
+
+        .folded #adminmenu li.menu-top:hover, .folded #adminmenu li.opensub > a.menu-top, .folded #adminmenu li > a.menu-top:focus {
+            z-index: 10000;
+        }
+
+        #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, .folded #adminmenu li.current.menu-top, .folded #adminmenu li.wp-has-current-submenu {
+            background: #0073aa;
+            color: #fff;
+        }
+
+        .folded #adminmenu .opensub .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, .folded #adminmenu .wp-has-current-submenu a.menu-top:focus + .wp-submenu, .folded #adminmenu .wp-has-current-submenu.opensub .wp-submenu, .folded #adminmenu .wp-submenu.sub-open, .folded #adminmenu a.menu-top:focus + .wp-submenu, .no-js.folded #adminmenu .wp-has-submenu:hover .wp-submenu {
+            top: 0;
+            left: 36px;
+        }
+
+        .folded #adminmenu .wp-has-current-submenu .wp-submenu, .folded #adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+            position: absolute;
+            top: -1000em;
+        }
+
+        #adminmenu .wp-not-current-submenu .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu {
+            min-width: 160px;
+            width: auto;
+        }
+
+        #adminmenu .wp-submenu a {
+            font-size: 13px;
+            line-height: 18px;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        #adminmenu .opensub .wp-submenu li.current a, #adminmenu .wp-submenu li.current, #adminmenu .wp-submenu li.current a, #adminmenu .wp-submenu li.current a:focus, #adminmenu .wp-submenu li.current a:hover, #adminmenu a.wp-has-current-submenu:focus + .wp-submenu li.current a {
+            color: #fff;
+        }
+
+        #adminmenu .wp-not-current-submenu li > a, .folded #adminmenu .wp-has-current-submenu li > a {
+            padding-right: 16px;
+            padding-left: 14px;
+            transition: all .1s ease-in-out;
+        }
+
+        #adminmenu .wp-has-current-submenu ul > li > a, .folded #adminmenu li.menu-top .wp-submenu > li > a {
+            padding: 5px 12px;
+        }
+
+        #adminmenu .wp-submenu-head, #adminmenu a.menu-top {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+            padding: 0;
+        }
+
+        #adminmenu .wp-submenu-head {
+            display: none;
+        }
+
+        .folded #adminmenu .wp-menu-name {
+            position: absolute;
+            left: -999px;
+        }
+
+        .folded #adminmenu .wp-submenu-head {
+            display: block;
+        }
+
+        #adminmenu .wp-submenu li {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #adminmenu .wp-menu-image img {
+            padding: 9px 0 0;
+            opacity: .6;
+            filter: alpha(opacity=60);
+        }
+
+        #adminmenu div.wp-menu-name {
+            padding: 8px 0;
+        }
+
+        #adminmenu div.wp-menu-image {
+            float: left;
+            width: 36px;
+            height: 34px;
+            margin: 0;
+            text-align: center;
+        }
+
+            #adminmenu div.wp-menu-image.svg {
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 20px auto;
+            }
+
+        div.wp-menu-image:before {
+            color: #a0a5aa;
+            color: rgba(240,245,250,.6);
+            padding: 7px 0;
+            transition: all .1s ease-in-out;
+        }
+
+        #adminmenu div.wp-menu-image:before {
+            color: #a0a5aa;
+            color: rgba(240,245,250,.6);
+        }
+
+        #adminmenu .current div.wp-menu-image:before, #adminmenu .wp-has-current-submenu div.wp-menu-image:before, #adminmenu a.current:hover div.wp-menu-image:before, #adminmenu a.wp-has-current-submenu:hover div.wp-menu-image:before, #adminmenu li.wp-has-current-submenu a:focus div.wp-menu-image:before, #adminmenu li.wp-has-current-submenu.opensub div.wp-menu-image:before, #adminmenu li.wp-has-current-submenu:hover div.wp-menu-image:before {
+            color: #fff;
+        }
+
+        #adminmenu li a:focus div.wp-menu-image:before, #adminmenu li.opensub div.wp-menu-image:before, #adminmenu li:hover div.wp-menu-image:before {
+            color: #00b9eb;
+        }
+
+        .ie8 #adminmenu li.opensub div.wp-menu-image:before {
+            color: #a0a5aa;
+        }
+
+        .folded #adminmenu div.wp-menu-image {
+            width: 35px;
+            height: 30px;
+            position: absolute;
+            z-index: 25;
+        }
+
+        .folded #adminmenu a.menu-top {
+            height: 34px;
+        }
+
+        .no-font-face #adminmenu .wp-menu-image {
+            display: none;
+        }
+
+        .no-font-face #adminmenu div.wp-menu-name {
+            padding: 8px 12px;
+        }
+
+        .no-font-face.auto-fold #adminmenu .wp-menu-name {
+            margin-left: 0;
+        }
+
+        .sticky-menu #adminmenuwrap {
+            position: fixed;
+        }
+
+        .wp-menu-arrow {
+            display: none !important;
+        }
+
+        ul#adminmenu a.wp-has-current-submenu {
+            position: relative;
+        }
+
+            ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu > li.current > a.current:after {
+                right: 0;
+                border: 8px solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-right-color: #f1f1f1;
+                top: 50%;
+                margin-top: -8px;
+            }
+
+        .folded ul#adminmenu li:hover a.wp-has-current-submenu:after {
+            display: none;
+        }
+
+        .folded ul#adminmenu a.wp-has-current-submenu:after, .folded ul#adminmenu > li a.current:after {
+            border-width: 4px;
+            margin-top: -4px;
+        }
+
+        #adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
+            right: 0;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-width: 8px;
+            top: 10px;
+            z-index: 10000;
+        }
+
+        .folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
+            border-width: 4px;
+            margin-top: -4px;
+            top: 18px;
+        }
+
+        #adminmenu li.wp-has-submenu.wp-not-current-submenu.opensub:hover:after {
+            border-right-color: #32373c;
+        }
+
+        #adminmenu li.menu-top:hover .wp-menu-image img, #adminmenu li.wp-has-current-submenu .wp-menu-image img {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        #adminmenu li.wp-menu-separator {
+            height: 5px;
+            padding: 0;
+            margin: 0 0 6px;
+            cursor: inherit;
+        }
+
+        #adminmenu div.separator {
+            height: 2px;
+            padding: 0;
+        }
+
+        #adminmenu .wp-submenu .wp-submenu-head {
+            color: #fff;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 8px 4px 8px 11px;
+            margin: -7px 0 4px;
+        }
+
+        #adminmenu li.current, .folded #adminmenu li.wp-menu-open {
+            border: 0;
+        }
+
+        #adminmenu .awaiting-mod, #adminmenu .update-plugins {
+            display: inline-block;
+            vertical-align: top;
+            margin: 1px 0 0 2px;
+            padding: 0 5px;
+            min-width: 7px;
+            height: 17px;
+            border-radius: 11px;
+            background-color: #ca4a1f;
+            color: #fff;
+            font-size: 9px;
+            line-height: 17px;
+            text-align: center;
+            z-index: 26;
+        }
+
+        #adminmenu li a.wp-has-current-submenu .update-plugins, #adminmenu li.current a .awaiting-mod {
+            background-color: #00b9eb;
+            color: #fff;
+        }
+
+        #adminmenu li span.count-0 {
+            display: none;
+        }
+
+        #collapse-button {
+            display: block;
+            width: 100%;
+            height: 34px;
+            margin: 0;
+            border: none;
+            padding: 0;
+            position: relative;
+            overflow: visible;
+            line-height: 34px;
+            background: 0 0;
+            color: #aaa;
+            cursor: pointer;
+            outline: 0;
+        }
+
+            #collapse-button:focus, #collapse-button:hover {
+                color: #00b9eb;
+            }
+
+            #collapse-button .collapse-button-icon, #collapse-button .collapse-button-label {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                line-height: 34px;
+            }
+
+            #collapse-button .collapse-button-icon {
+                width: 36px;
+                height: 34px;
+            }
+
+            #collapse-button .collapse-button-label {
+                padding: 0 0 0 36px;
+            }
+
+        .folded #collapse-button .collapse-button-label {
+            display: none;
+        }
+
+        #collapse-button .collapse-button-icon:after {
+            content: "\f148";
+            display: block;
+            position: relative;
+            top: 7px;
+            text-align: center;
+            font: 400 20px/1 dashicons !important;
+            speak: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .folded #collapse-button .collapse-button-icon:after, .rtl #collapse-button .collapse-button-icon:after {
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .rtl.folded #collapse-button .collapse-button-icon:after {
+            -webkit-transform: none;
+            transform: none;
+        }
+
+        #collapse-button .collapse-button-icon:after, #collapse-button .collapse-button-label {
+            transition: all .1s ease-in-out;
+        }
+
+        .customize-support #menu-appearance a[href="themes.php?page=custom-header"], .customize-support #menu-appearance a[href="themes.php?page=custom-background"], li#wp-admin-bar-menu-toggle {
+            display: none;
+        }
+
+        @media only screen and (max-width:960px) {
+            .auto-fold #wpcontent, .auto-fold #wpfooter {
+                margin-left: 36px;
+            }
+
+            .auto-fold #adminmenu, .auto-fold #adminmenu li.menu-top, .auto-fold #adminmenuback, .auto-fold #adminmenuwrap {
+                width: 36px;
+            }
+
+                .auto-fold #adminmenu .opensub .wp-submenu, .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, .auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus + .wp-submenu, .auto-fold #adminmenu .wp-has-current-submenu.opensub .wp-submenu, .auto-fold #adminmenu .wp-submenu.sub-open, .auto-fold #adminmenu a.menu-top:focus + .wp-submenu {
+                    top: 0;
+                    left: 36px;
+                }
+
+                .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu, .auto-fold #adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+                    position: absolute;
+                    top: -1000em;
+                    margin-right: -1px;
+                    padding: 7px 0 8px;
+                    z-index: 9999;
+                }
+
+                .auto-fold #adminmenu .wp-has-current-submenu .wp-submenu {
+                    min-width: 150px;
+                    width: auto;
+                }
+
+                .auto-fold #adminmenu .wp-has-current-submenu li > a {
+                    padding-right: 16px;
+                    padding-left: 14px;
+                }
+
+                .auto-fold #adminmenu li.menu-top .wp-submenu > li > a {
+                    padding-left: 12px;
+                }
+
+                .auto-fold #adminmenu .wp-menu-name {
+                    position: absolute;
+                    left: -999px;
+                }
+
+                .auto-fold #adminmenu .wp-submenu-head {
+                    display: block;
+                }
+
+                .auto-fold #adminmenu div.wp-menu-image {
+                    height: 30px;
+                    width: 34px;
+                    position: absolute;
+                    z-index: 25;
+                }
+
+                .auto-fold #adminmenu a.menu-top {
+                    height: 34px;
+                }
+
+                .auto-fold #adminmenu li.wp-menu-open {
+                    border: 0;
+                }
+
+                .auto-fold #adminmenu .wp-has-current-submenu.menu-top-last {
+                    margin-bottom: 0;
+                }
+
+            .auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after {
+                display: none;
+            }
+
+            .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
+                border-width: 4px;
+                margin-top: -4px;
+                top: 16px;
+            }
+
+            .auto-fold ul#adminmenu a.wp-has-current-submenu:after, .auto-fold ul#adminmenu > li a.current:after {
+                border-width: 4px;
+                margin-top: -4px;
+            }
+
+            .auto-fold #adminmenu li.menu-top:hover, .auto-fold #adminmenu li.opensub > a.menu-top, .auto-fold #adminmenu li > a.menu-top:focus {
+                z-index: 10000;
+            }
+
+            .auto-fold #collapse-menu .collapse-button-label {
+                display: none;
+            }
+
+            .auto-fold #collapse-button .collapse-button-icon:after {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+
+            .rtl.auto-fold #collapse-button .collapse-button-icon:after {
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
+
+        @media screen and (max-width:782px) {
+            .auto-fold #wpcontent {
+                position: relative;
+                margin-left: 0;
+                padding-left: 10px;
+            }
+
+            .sticky-menu #adminmenuwrap {
+                position: relative;
+                z-index: auto;
+                top: 0;
+            }
+
+            .auto-fold #adminmenu, .auto-fold #adminmenuback, .auto-fold #adminmenuwrap {
+                position: absolute;
+                width: 190px;
+                z-index: 100;
+            }
+
+            .auto-fold #adminmenuback, .auto-fold #adminmenuwrap {
+                display: none;
+            }
+
+            .auto-fold .wp-responsive-open #adminmenuback, .auto-fold .wp-responsive-open #adminmenuwrap {
+                display: block;
+            }
+
+            .auto-fold #adminmenu li.menu-top {
+                width: 100%;
+            }
+
+            .auto-fold #adminmenu li a {
+                font-size: 16px;
+                padding: 5px;
+            }
+
+            .auto-fold #adminmenu li.menu-top .wp-submenu > li > a {
+                padding: 10px 10px 10px 20px;
+            }
+
+            .auto-fold #adminmenu .wp-menu-name {
+                position: static;
+                margin-left: 35px;
+            }
+
+            .auto-fold ul#adminmenu a.wp-has-current-submenu:after, .auto-fold ul#adminmenu > li.current > a.current:after {
+                border-width: 8px;
+                margin-top: -8px;
+            }
+
+            .auto-fold ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
+                display: none;
+            }
+
+            #adminmenu .wp-submenu {
+                position: relative;
+                display: none;
+            }
+
+            .auto-fold #adminmenu .selected .wp-submenu, .auto-fold #adminmenu .wp-menu-open .wp-submenu {
+                position: relative;
+                display: block;
+                top: 0;
+                left: -1px;
+                box-shadow: none;
+            }
+
+                .auto-fold #adminmenu .selected .wp-submenu:after, .auto-fold #adminmenu .wp-menu-open .wp-submenu:after {
+                    display: none;
+                }
+
+            .auto-fold #adminmenu .opensub .wp-submenu {
+                display: none;
+            }
+
+            .auto-fold #adminmenu .selected .wp-submenu {
+                display: block;
+            }
+
+            .auto-fold ul#adminmenu li:hover a.wp-has-current-submenu:after {
+                display: block;
+            }
+
+            .auto-fold #adminmenu .wp-has-current-submenu a.menu-top:focus + .wp-submenu, .auto-fold #adminmenu a.menu-top:focus + .wp-submenu {
+                position: relative;
+                left: -1px;
+                right: 0;
+                top: 0;
+            }
+
+            #adminmenu .wp-submenu .wp-submenu-head {
+                display: none;
+            }
+
+            #wp-responsive-toggle {
+                position: fixed;
+                top: 5px;
+                left: 4px;
+                padding-right: 10px;
+                z-index: 99999;
+                border: none;
+                box-sizing: border-box;
+            }
+
+            #wpadminbar #wp-admin-bar-menu-toggle a {
+                display: block;
+                padding: 0;
+                overflow: hidden;
+                outline: 0;
+                text-decoration: none;
+                border: 1px solid transparent;
+                background: 0 0;
+                height: 44px;
+                margin-left: -1px;
+            }
+
+            .wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle a {
+                background: #32373c;
+            }
+
+            li#wp-admin-bar-menu-toggle {
+                display: block;
+            }
+
+            #wpadminbar #wp-admin-bar-menu-toggle a:hover {
+                border: 1px solid transparent;
+            }
+
+            #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+                content: "\f228";
+                display: inline-block;
+                float: left;
+                font: 400 40px/45px dashicons;
+                vertical-align: middle;
+                outline: 0;
+                margin: 0;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                height: 44px;
+                width: 50px;
+                padding: 0;
+                border: none;
+                text-align: center;
+                text-decoration: none;
+                box-sizing: border-box;
+            }
+
+            .wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
+                color: #00b9eb;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            #adminmenuback, #adminmenuwrap {
+                display: none;
+            }
+
+            .wp-responsive-open #adminmenuback, .wp-responsive-open #adminmenuwrap {
+                display: block;
+            }
+
+            .auto-fold #adminmenu {
+                top: 46px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.css" />
+    <script src="../js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script>
+        !function (a) { a.fn.hoverIntent = function (b, c, d) { var e = { interval: 100, sensitivity: 6, timeout: 0 }; e = "object" == typeof b ? a.extend(e, b) : a.isFunction(c) ? a.extend(e, { over: b, out: c, selector: d }) : a.extend(e, { over: b, out: b, selector: c }); var f, g, h, i, j = function (a) { f = a.pageX, g = a.pageY }, k = function (b, c) { return c.hoverIntent_t = clearTimeout(c.hoverIntent_t), Math.sqrt((h - f) * (h - f) + (i - g) * (i - g)) < e.sensitivity ? (a(c).off("mousemove.hoverIntent", j), c.hoverIntent_s = !0, e.over.apply(c, [b])) : (h = f, i = g, c.hoverIntent_t = setTimeout(function () { k(b, c) }, e.interval), void 0) }, l = function (a, b) { return b.hoverIntent_t = clearTimeout(b.hoverIntent_t), b.hoverIntent_s = !1, e.out.apply(b, [a]) }, m = function (b) { var c = a.extend({}, b), d = this; d.hoverIntent_t && (d.hoverIntent_t = clearTimeout(d.hoverIntent_t)), "mouseenter" === b.type ? (h = c.pageX, i = c.pageY, a(d).on("mousemove.hoverIntent", j), d.hoverIntent_s || (d.hoverIntent_t = setTimeout(function () { k(c, d) }, e.interval))) : (a(d).off("mousemove.hoverIntent", j), d.hoverIntent_s && (d.hoverIntent_t = setTimeout(function () { l(c, d) }, e.timeout))) }; return this.on({ "mouseenter.hoverIntent": m, "mouseleave.hoverIntent": m }, e.selector) } }(jQuery);
+        var showNotice, adminMenu, columns, validateForm, screenMeta; !function (a, b, c) { function d(a) { -1 !== i.val().indexOf(a.text().trim()) ? (a.attr("data-label", a.attr("aria-label")), a.attr("aria-label", a.attr("data-used")), a.attr("aria-pressed", !0), a.addClass("active")) : a.attr("data-label") && (a.attr("aria-label", a.attr("data-label")), a.attr("aria-pressed", !1), a.removeClass("active")) } var e = a(document), f = a(b), g = a(document.body); adminMenu = { init: function () { }, fold: function () { }, restoreMenuState: function () { }, toggle: function () { }, favorites: function () { } }, columns = { init: function () { var b = this; a(".hide-column-tog", "#adv-settings").click(function () { var c = a(this), d = c.val(); c.prop("checked") ? b.checked(d) : b.unchecked(d), columns.saveManageColumnsState() }) }, saveManageColumnsState: function () { var b = this.hidden(); a.post(ajaxurl, { action: "hidden-columns", hidden: b, screenoptionnonce: a("#screenoptionnonce").val(), page: pagenow }) }, checked: function (b) { a(".column-" + b).removeClass("hidden"), this.colSpanChange(1) }, unchecked: function (b) { a(".column-" + b).addClass("hidden"), this.colSpanChange(-1) }, hidden: function () { return a(".manage-column[id]").filter(":hidden").map(function () { return this.id }).get().join(",") }, useCheckboxesForHidden: function () { this.hidden = function () { return a(".hide-column-tog").not(":checked").map(function () { var a = this.id; return a.substring(a, a.length - 5) }).get().join(",") } }, colSpanChange: function (b) { var c, d = a("table").find(".colspanchange"); d.length && (c = parseInt(d.attr("colspan"), 10) + b, d.attr("colspan", c.toString())) } }, e.ready(function () { columns.init() }), validateForm = function (b) { return !a(b).find(".form-required").filter(function () { return "" === a(":input:visible", this).val() }).addClass("form-invalid").find(":input:visible").change(function () { a(this).closest(".form-invalid").removeClass("form-invalid") }).length }, showNotice = { warn: function () { var a = commonL10n.warnDelete || ""; return !!confirm(a) }, note: function (a) { alert(a) } }, screenMeta = { element: null, toggles: null, page: null, init: function () { this.element = a("#screen-meta"), this.toggles = a("#screen-meta-links").find(".show-settings"), this.page = a("#wpcontent"), this.toggles.click(this.toggleEvent) }, toggleEvent: function () { var b = a("#" + a(this).attr("aria-controls")); b.length && (b.is(":visible") ? screenMeta.close(b, a(this)) : screenMeta.open(b, a(this))) }, open: function (b, c) { a("#screen-meta-links").find(".screen-meta-toggle").not(c.parent()).css("visibility", "hidden"), b.parent().show(), b.slideDown("fast", function () { b.focus(), c.addClass("screen-meta-active").attr("aria-expanded", !0) }), e.trigger("screen:options:open") }, close: function (b, c) { b.slideUp("fast", function () { c.removeClass("screen-meta-active").attr("aria-expanded", !1), a(".screen-meta-toggle").css("visibility", ""), b.parent().hide() }), e.trigger("screen:options:close") } }, a(".contextual-help-tabs").delegate("a", "click", function (b) { var c, d = a(this); return b.preventDefault(), !d.is(".active a") && (a(".contextual-help-tabs .active").removeClass("active"), d.parent("li").addClass("active"), c = a(d.attr("href")), a(".help-tab-content").not(c).removeClass("active").hide(), void c.addClass("active").show()) }); var h = !1, i = a("#permalink_structure"), j = a(".permalink-structure input:radio"), k = a("#custom_selection"), l = a(".form-table.permalink-structure .available-structure-tags button"); j.on("change", function () { "custom" !== this.value && (i.val(this.value), l.each(function () { d(a(this)) })) }), i.on("click input", function () { k.prop("checked", !0) }), i.on("focus", function (b) { h = !0, a(this).off(b) }), l.each(function () { d(a(this)) }), i.on("change", function () { l.each(function () { d(a(this)) }) }), l.on("click", function () { var b, c = i.val(), e = i[0].selectionStart, f = i[0].selectionEnd, g = a(this).text().trim(), j = a(this).attr("data-added"); return -1 !== c.indexOf(g) ? (c = c.replace(g + "/", ""), i.val("/" === c ? "" : c), a("#custom_selection_updated").text(j), void d(a(this))) : (h || 0 !== e || 0 !== f || (e = f = c.length), k.prop("checked", !0), "/" !== c.substr(0, e).substr(-1) && (g = "/" + g), "/" !== c.substr(f, 1) && (g += "/"), i.val(c.substr(0, e) + g + c.substr(f)), a("#custom_selection_updated").text(j), d(a(this)), void (h && i[0].setSelectionRange && (b = (c.substr(0, e) + g).length, i[0].setSelectionRange(b, b), i.focus()))) }), e.ready(function () { function c() { var b = a("a.wp-has-current-submenu"); "folded" === x ? b.attr("aria-haspopup", "true") : b.attr("aria-haspopup", "false") } function d(a) { var b, c, d, e, g, h, i, j = a.find(".wp-submenu"); g = a.offset().top, h = f.scrollTop(), i = g - h - 30, b = g + j.height() + 1, c = F.height(), d = 60 + b - c, e = f.height() + h - 50, e < b - d && (d = b - e), d > i && (d = i), d > 1 ? j.css("margin-top", "-" + d + "px") : j.css("margin-top", "") } function h() { a(".notice.is-dismissible").each(function () { var b = a(this), c = a('<button type="button" class="notice-dismiss"><span class="screen-reader-text"></span></button>'), d = commonL10n.dismiss || ""; c.find(".screen-reader-text").text(d), c.on("click.wp-dismiss-notice", function (a) { a.preventDefault(), b.fadeTo(100, 0, function () { b.slideUp(100, function () { b.remove() }) }) }), b.append(c) }) } function i(a) { var b = f.scrollTop(), c = !a || "scroll" !== a.type; if (!(B || D || G.data("wp-responsive"))) { if (S.menu + S.adminbar < S.window || S.menu + S.adminbar + 20 > S.wpwrap) return void k(); if (R = !0, S.menu + S.adminbar > S.window) { if (b < 0) return void (O || (O = !0, P = !1, E.css({ position: "fixed", top: "", bottom: "" }))); if (b + S.window > e.height() - 1) return void (P || (P = !0, O = !1, E.css({ position: "fixed", top: "", bottom: 0 }))); b > N ? O ? (O = !1, Q = E.offset().top - S.adminbar - (b - N), Q + S.menu + S.adminbar < b + S.window && (Q = b + S.window - S.menu - S.adminbar), E.css({ position: "absolute", top: Q, bottom: "" })) : !P && E.offset().top + S.menu < b + S.window && (P = !0, E.css({ position: "fixed", top: "", bottom: 0 })) : b < N ? P ? (P = !1, Q = E.offset().top - S.adminbar + (N - b), Q + S.menu > b + S.window && (Q = b), E.css({ position: "absolute", top: Q, bottom: "" })) : !O && E.offset().top >= b + S.adminbar && (O = !0, E.css({ position: "fixed", top: "", bottom: "" })) : c && (O = P = !1, Q = b + S.window - S.menu - S.adminbar - 1, Q > 0 ? E.css({ position: "absolute", top: Q, bottom: "" }) : k()) } N = b } } function j() { S = { window: f.height(), wpwrap: F.height(), adminbar: M.height(), menu: E.height() } } function k() { !B && R && (O = P = R = !1, E.css({ position: "", top: "", bottom: "" })) } function l() { j(), G.data("wp-responsive") ? (g.removeClass("sticky-menu"), k()) : S.menu + S.adminbar > S.window ? (i(), g.removeClass("sticky-menu")) : (g.addClass("sticky-menu"), k()) } function m() { a(".aria-button-if-js").attr("role", "button") } function n() { var a = !1; return b.innerWidth && (a = Math.max(b.innerWidth, document.documentElement.clientWidth)), a } function o() { var a = n() || 961; x = a <= 782 ? "responsive" : g.hasClass("folded") || g.hasClass("auto-fold") && a <= 960 && a > 782 ? "folded" : "open", e.trigger("wp-menu-state-set", { state: x }) } var p, q, r, s, t, u, v, w, x, y = !1, z = a("input.current-page"), A = z.val(), B = /iPhone|iPad|iPod/.test(navigator.userAgent), C = navigator.userAgent.indexOf("Android") !== -1, D = a(document.documentElement).hasClass("ie8"), E = a("#adminmenuwrap"), F = a("#wpwrap"), G = a("#adminmenu"), H = a("#wp-responsive-overlay"), I = a("#wp-toolbar"), J = I.find('a[aria-haspopup="true"]'), K = a(".meta-box-sortables"), L = !1, M = a("#wpadminbar"), N = 0, O = !1, P = !1, Q = 0, R = !1, S = { window: f.height(), wpwrap: F.height(), adminbar: M.height(), menu: E.height() }, T = a(".wp-header-end"); G.on("click.wp-submenu-head", ".wp-submenu-head", function (b) { a(b.target).parent().siblings("a").get(0).click() }), a("#collapse-button").on("click.collapse-menu", function () { var b = n() || 961; a("#adminmenu div.wp-submenu").css("margin-top", ""), b < 960 ? g.hasClass("auto-fold") ? (g.removeClass("auto-fold").removeClass("folded"), setUserSetting("unfold", 1), setUserSetting("mfold", "o"), x = "open") : (g.addClass("auto-fold"), setUserSetting("unfold", 0), x = "folded") : g.hasClass("folded") ? (g.removeClass("folded"), setUserSetting("mfold", "o"), x = "open") : (g.addClass("folded"), setUserSetting("mfold", "f"), x = "folded"), e.trigger("wp-collapse-menu", { state: x }) }), e.on("wp-menu-state-set wp-collapse-menu wp-responsive-activate wp-responsive-deactivate", c), ("ontouchstart" in b || /IEMobile\/[1-9]/.test(navigator.userAgent)) && (u = B ? "touchstart" : "click", g.on(u + ".wp-mobile-hover", function (b) { G.data("wp-responsive") || a(b.target).closest("#adminmenu").length || G.find("li.opensub").removeClass("opensub") }), G.find("a.wp-has-submenu").on(u + ".wp-mobile-hover", function (b) { var c = a(this).parent(); G.data("wp-responsive") || c.hasClass("opensub") || c.hasClass("wp-menu-open") && !(c.width() < 40) || (b.preventDefault(), d(c), G.find("li.opensub").removeClass("opensub"), c.addClass("opensub")) })), B || C || (G.find("li.wp-has-submenu").hoverIntent({ over: function () { var b = a(this), c = b.find(".wp-submenu"), e = parseInt(c.css("top"), 10); isNaN(e) || e > -5 || G.data("wp-responsive") || (d(b), G.find("li.opensub").removeClass("opensub"), b.addClass("opensub")) }, out: function () { G.data("wp-responsive") || a(this).removeClass("opensub").find(".wp-submenu").css("margin-top", "") }, timeout: 200, sensitivity: 7, interval: 90 }), G.on("focus.adminmenu", ".wp-submenu a", function (b) { G.data("wp-responsive") || a(b.target).closest("li.menu-top").addClass("opensub") }).on("blur.adminmenu", ".wp-submenu a", function (b) { G.data("wp-responsive") || a(b.target).closest("li.menu-top").removeClass("opensub") }).find("li.wp-has-submenu.wp-not-current-submenu").on("focusin.adminmenu", function () { d(a(this)) })), T.length || (T = a(".wrap h1, .wrap h2").first()), a("div.updated, div.error, div.notice").not(".inline, .below-h2").insertAfter(T), e.on("wp-updates-notice-added wp-plugin-install-error wp-plugin-update-error wp-plugin-delete-error wp-theme-install-error wp-theme-delete-error", h), screenMeta.init(), g.on("click", "tbody > tr > .check-column :checkbox", function (b) { if ("undefined" == b.shiftKey) return !0; if (b.shiftKey) { if (!y) return !0; p = a(y).closest("form").find(":checkbox").filter(":visible:enabled"), q = p.index(y), r = p.index(this), s = a(this).prop("checked"), 0 < q && 0 < r && q != r && (t = r > q ? p.slice(q, r) : p.slice(r, q), t.prop("checked", function () { return !!a(this).closest("tr").is(":visible") && s })) } y = this; var c = a(this).closest("tbody").find(":checkbox").filter(":visible:enabled").not(":checked"); return a(this).closest("table").children("thead, tfoot").find(":checkbox").prop("checked", function () { return 0 === c.length }), !0 }), g.on("click.wp-toggle-checkboxes", "thead .check-column :checkbox, tfoot .check-column :checkbox", function (b) { var c = a(this), d = c.closest("table"), e = c.prop("checked"), f = b.shiftKey || c.data("wp-toggle"); d.children("tbody").filter(":visible").children().children(".check-column").find(":checkbox").prop("checked", function () { return !a(this).is(":hidden,:disabled") && (f ? !a(this).prop("checked") : !!e) }), d.children("thead,  tfoot").filter(":visible").children().children(".check-column").find(":checkbox").prop("checked", function () { return !f && !!e }) }), a("#wpbody-content").on({ focusin: function () { clearTimeout(v), w = a(this).find(".row-actions"), a(".row-actions").not(this).removeClass("visible"), w.addClass("visible") }, focusout: function () { v = setTimeout(function () { w.removeClass("visible") }, 30) } }, ".has-row-actions"), a("tbody").on("click", ".toggle-row", function () { a(this).closest("tr").toggleClass("is-expanded") }), a("#default-password-nag-no").click(function () { return setUserSetting("default_password_nag", "hide"), a("div.default-password-nag").hide(), !1 }), a("#newcontent").bind("keydown.wpevent_InsertTab", function (b) { var c, d, e, f, g, h = b.target; if (27 == b.keyCode) return b.preventDefault(), void a(h).data("tab-out", !0); if (!(9 != b.keyCode || b.ctrlKey || b.altKey || b.shiftKey)) { if (a(h).data("tab-out")) return void a(h).data("tab-out", !1); c = h.selectionStart, d = h.selectionEnd, e = h.value, document.selection ? (h.focus(), g = document.selection.createRange(), g.text = "\t") : c >= 0 && (f = this.scrollTop, h.value = e.substring(0, c).concat("\t", e.substring(d)), h.selectionStart = h.selectionEnd = c + 1, this.scrollTop = f), b.stopPropagation && b.stopPropagation(), b.preventDefault && b.preventDefault() } }), z.length && z.closest("form").submit(function () { a('select[name="action"]').val() == -1 && a('select[name="action2"]').val() == -1 && z.val() == A && z.val("1") }), a('.search-box input[type="search"], .search-box input[type="submit"]').mousedown(function () { a('select[name^="action"]').val("-1") }), a("#contextual-help-link, #show-settings-link").on("focus.scroll-into-view", function (a) { a.target.scrollIntoView && a.target.scrollIntoView(!1) }), function () { function b() { c.prop("disabled", "" === d.map(function () { return a(this).val() }).get().join("")) } var c, d, e = a("form.wp-upload-form"); e.length && (c = e.find('input[type="submit"]'), d = e.find('input[type="file"]'), b(), d.on("change", b)) }(), B || (f.on("scroll.pin-menu", i), e.on("tinymce-editor-init.pin-menu", function (a, b) { b.on("wp-autoresize", j) })), b.wpResponsive = { init: function () { var c = this; e.on("wp-responsive-activate.wp-responsive", function () { c.activate() }).on("wp-responsive-deactivate.wp-responsive", function () { c.deactivate() }), a("#wp-admin-bar-menu-toggle a").attr("aria-expanded", "false"), a("#wp-admin-bar-menu-toggle").on("click.wp-responsive", function (b) { b.preventDefault(), M.find(".hover").removeClass("hover"), F.toggleClass("wp-responsive-open"), F.hasClass("wp-responsive-open") ? (a(this).find("a").attr("aria-expanded", "true"), a("#adminmenu a:first").focus()) : a(this).find("a").attr("aria-expanded", "false") }), G.on("click.wp-responsive", "li.wp-has-submenu > a", function (b) { G.data("wp-responsive") && (a(this).parent("li").toggleClass("selected"), b.preventDefault()) }), c.trigger(), e.on("wp-window-resized.wp-responsive", a.proxy(this.trigger, this)), f.on("load.wp-responsive", function () { var a = navigator.userAgent.indexOf("AppleWebKit/") > -1 ? f.width() : b.innerWidth; a <= 782 && c.disableSortables() }) }, activate: function () { l(), g.hasClass("auto-fold") || g.addClass("auto-fold"), G.data("wp-responsive", 1), this.disableSortables() }, deactivate: function () { l(), G.removeData("wp-responsive"), this.enableSortables() }, trigger: function () { var a = n(); a && (a <= 782 ? L || (e.trigger("wp-responsive-activate"), L = !0) : L && (e.trigger("wp-responsive-deactivate"), L = !1), a <= 480 ? this.enableOverlay() : this.disableOverlay()) }, enableOverlay: function () { 0 === H.length && (H = a('<div id="wp-responsive-overlay"></div>').insertAfter("#wpcontent").hide().on("click.wp-responsive", function () { I.find(".menupop.hover").removeClass("hover"), a(this).hide() })), J.on("click.wp-responsive", function () { H.show() }) }, disableOverlay: function () { J.off("click.wp-responsive"), H.hide() }, disableSortables: function () { if (K.length) try { K.sortable("disable") } catch (a) { } }, enableSortables: function () { if (K.length) try { K.sortable("enable") } catch (a) { } } }, a(document).ajaxComplete(function () { m() }), e.on("wp-window-resized.set-menu-state", o), e.on("wp-menu-state-set wp-collapse-menu", function (b, c) { var d = a("#collapse-button"), e = "true", f = commonL10n.collapseMenu; "folded" === c.state && (e = "false", f = commonL10n.expandMenu), d.attr({ "aria-expanded": e, "aria-label": f }) }), b.wpResponsive.init(), l(), o(), c(), h(), m(), e.on("wp-pin-menu wp-window-resized.pin-menu postboxes-columnchange.pin-menu postbox-toggled.pin-menu wp-collapse-menu.pin-menu wp-scroll-start.pin-menu", l), a(".wp-initial-focus").focus(), g.on("click", ".js-update-details-toggle", function () { var b = a(this).closest(".js-update-details"), c = a("#" + b.data("update-details")); c.hasClass("update-details-moved") || c.insertAfter(b).addClass("update-details-moved"), c.toggle(), a(this).attr("aria-expanded", c.is(":visible")) }) }), function () { function a() { e.trigger("wp-window-resized") } function c() { b.clearTimeout(d), d = b.setTimeout(a, 200) } var d; f.on("resize.wp-fire-once", c) }(), function () { if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) { var a = document.createElement("style"); a.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}")), document.getElementsByTagName("head")[0].appendChild(a) } }() }(jQuery, window);
+        "undefined" != typeof jQuery ? ("undefined" == typeof jQuery.fn.hoverIntent && !function (a) { a.fn.hoverIntent = function (b, c, d) { var e = { interval: 100, sensitivity: 6, timeout: 0 }; e = "object" == typeof b ? a.extend(e, b) : a.isFunction(c) ? a.extend(e, { over: b, out: c, selector: d }) : a.extend(e, { over: b, out: b, selector: c }); var f, g, h, i, j = function (a) { f = a.pageX, g = a.pageY }, k = function (b, c) { return c.hoverIntent_t = clearTimeout(c.hoverIntent_t), Math.sqrt((h - f) * (h - f) + (i - g) * (i - g)) < e.sensitivity ? (a(c).off("mousemove.hoverIntent", j), c.hoverIntent_s = !0, e.over.apply(c, [b])) : (h = f, i = g, void (c.hoverIntent_t = setTimeout(function () { k(b, c) }, e.interval))) }, l = function (a, b) { return b.hoverIntent_t = clearTimeout(b.hoverIntent_t), b.hoverIntent_s = !1, e.out.apply(b, [a]) }, m = function (b) { var c = a.extend({}, b), d = this; d.hoverIntent_t && (d.hoverIntent_t = clearTimeout(d.hoverIntent_t)), "mouseenter" === b.type ? (h = c.pageX, i = c.pageY, a(d).on("mousemove.hoverIntent", j), d.hoverIntent_s || (d.hoverIntent_t = setTimeout(function () { k(c, d) }, e.interval))) : (a(d).off("mousemove.hoverIntent", j), d.hoverIntent_s && (d.hoverIntent_t = setTimeout(function () { l(c, d) }, e.timeout))) }; return this.on({ "mouseenter.hoverIntent": m, "mouseleave.hoverIntent": m }, e.selector) } }(jQuery), jQuery(document).ready(function (a) { var b, c, d, e = a("#wpadminbar"), f = !1; b = function (b, c) { var d = a(c), e = d.attr("tabindex"); e && d.attr("tabindex", "0").attr("tabindex", e) }, c = function (b) { e.find("li.menupop").on("click.wp-mobile-hover", function (c) { var d = a(this); d.parent().is("#wp-admin-bar-root-default") && !d.hasClass("hover") ? (c.preventDefault(), e.find("li.menupop.hover").removeClass("hover"), d.addClass("hover")) : d.hasClass("hover") ? a(c.target).closest("div").hasClass("ab-sub-wrapper") || (c.stopPropagation(), c.preventDefault(), d.removeClass("hover")) : (c.stopPropagation(), c.preventDefault(), d.addClass("hover")), b && (a("li.menupop").off("click.wp-mobile-hover"), f = !1) }) }, d = function () { var b = /Mobile\/.+Safari/.test(navigator.userAgent) ? "touchstart" : "click"; a(document.body).on(b + ".wp-mobile-hover", function (b) { a(b.target).closest("#wpadminbar").length || e.find("li.menupop.hover").removeClass("hover") }) }, e.removeClass("nojq").removeClass("nojs"), "ontouchstart" in window ? (e.on("touchstart", function () { c(!0), f = !0 }), d()) : /IEMobile\/[1-9]/.test(navigator.userAgent) && (c(), d()), e.find("li.menupop").hoverIntent({ over: function () { f || a(this).addClass("hover") }, out: function () { f || a(this).removeClass("hover") }, timeout: 180, sensitivity: 7, interval: 100 }), window.location.hash && window.scrollBy(0, -32), a("#wp-admin-bar-get-shortlink").click(function (b) { b.preventDefault(), a(this).addClass("selected").children(".shortlink-input").blur(function () { a(this).parents("#wp-admin-bar-get-shortlink").removeClass("selected") }).focus().select() }), a("#wpadminbar li.menupop > .ab-item").bind("keydown.adminbar", function (c) { if (13 == c.which) { var d = a(c.target), e = d.closest(".ab-sub-wrapper"), f = d.parent().hasClass("hover"); c.stopPropagation(), c.preventDefault(), e.length || (e = a("#wpadminbar .quicklinks")), e.find(".menupop").removeClass("hover"), f || d.parent().toggleClass("hover"), d.siblings(".ab-sub-wrapper").find(".ab-item").each(b) } }).each(b), a("#wpadminbar .ab-item").bind("keydown.adminbar", function (c) { if (27 == c.which) { var d = a(c.target); c.stopPropagation(), c.preventDefault(), d.closest(".hover").removeClass("hover").children(".ab-item").focus(), d.siblings(".ab-sub-wrapper").find(".ab-item").each(b) } }), e.click(function (b) { "wpadminbar" != b.target.id && "wp-admin-bar-top-secondary" != b.target.id || (e.find("li.menupop.hover").removeClass("hover"), a("html, body").animate({ scrollTop: 0 }, "fast"), b.preventDefault()) }), a(".screen-reader-shortcut").keydown(function (b) { var c, d; 13 == b.which && (c = a(this).attr("href"), d = navigator.userAgent.toLowerCase(), d.indexOf("applewebkit") != -1 && c && "#" == c.charAt(0) && setTimeout(function () { a(c).focus() }, 100)) }), a("#adminbar-search").on({ focus: function () { a("#adminbarsearch").addClass("adminbar-focused") }, blur: function () { a("#adminbarsearch").removeClass("adminbar-focused") } }), "sessionStorage" in window && a("#wp-admin-bar-logout a").click(function () { try { for (var a in sessionStorage) a.indexOf("wp-autosave-") != -1 && sessionStorage.removeItem(a) } catch (b) { } }), navigator.userAgent && document.body.className.indexOf("no-font-face") === -1 && /Android (1.0|1.1|1.5|1.6|2.0|2.1)|Nokia|Opera Mini|w(eb)?OSBrowser|webOS|UCWEB|Windows Phone OS 7|XBLWP7|ZuneWP7|MSIE 7/.test(navigator.userAgent) && (document.body.className += " no-font-face") })) : !function (a, b) { var c, d = function (a, b, c) { a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, function () { return c.call(a, window.event) }) }, e = new RegExp("\\bhover\\b", "g"), f = [], g = new RegExp("\\bselected\\b", "g"), h = function (a) { for (var b = f.length; b--;) if (f[b] && a == f[b][1]) return f[b][0]; return !1 }, i = function (b) { for (var d, i, j, k, l, m, n = [], o = 0; b && b != c && b != a;) "LI" == b.nodeName.toUpperCase() && (n[n.length] = b, i = h(b), i && clearTimeout(i), b.className = b.className ? b.className.replace(e, "") + " hover" : "hover", k = b), b = b.parentNode; if (k && k.parentNode && (l = k.parentNode, l && "UL" == l.nodeName.toUpperCase())) for (d = l.childNodes.length; d--;) m = l.childNodes[d], m != k && (m.className = m.className ? m.className.replace(g, "") : ""); for (d = f.length; d--;) { for (j = !1, o = n.length; o--;) n[o] == f[d][1] && (j = !0); j || (f[d][1].className = f[d][1].className ? f[d][1].className.replace(e, "") : "") } }, j = function (b) { for (; b && b != c && b != a;) "LI" == b.nodeName.toUpperCase() && !function (a) { var b = setTimeout(function () { a.className = a.className ? a.className.replace(e, "") : "" }, 500); f[f.length] = [b, a] }(b), b = b.parentNode }, k = function (b) { for (var d, e, f, h = b.target || b.srcElement; ;) { if (!h || h == a || h == c) return; if (h.id && "wp-admin-bar-get-shortlink" == h.id) break; h = h.parentNode } for (b.preventDefault && b.preventDefault(), b.returnValue = !1, -1 == h.className.indexOf("selected") && (h.className += " selected"), d = 0, e = h.childNodes.length; d < e; d++) if (f = h.childNodes[d], f.className && -1 != f.className.indexOf("shortlink-input")) { f.focus(), f.select(), f.onblur = function () { h.className = h.className ? h.className.replace(g, "") : "" }; break } return !1 }, l = function (a) { var b, c, d, e, f, g; if (!("wpadminbar" != a.id && "wp-admin-bar-top-secondary" != a.id || (b = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0, b < 1))) for (g = b > 800 ? 130 : 100, c = Math.min(12, Math.round(b / g)), d = b > 800 ? Math.round(b / 30) : Math.round(b / 20), e = [], f = 0; b;) b -= d, b < 0 && (b = 0), e.push(b), setTimeout(function () { window.scrollTo(0, e.shift()) }, f * c), f++ }; d(b, "load", function () { c = a.getElementById("wpadminbar"), a.body && c && (a.body.appendChild(c), c.className && (c.className = c.className.replace(/nojs/, "")), d(c, "mouseover", function (a) { i(a.target || a.srcElement) }), d(c, "mouseout", function (a) { j(a.target || a.srcElement) }), d(c, "click", k), d(c, "click", function (a) { l(a.target || a.srcElement) }), d(document.getElementById("wp-admin-bar-logout"), "click", function () { if ("sessionStorage" in window) try { for (var a in sessionStorage) a.indexOf("wp-autosave-") != -1 && sessionStorage.removeItem(a) } catch (b) { } })), b.location.hash && b.scrollBy(0, -32), navigator.userAgent && document.body.className.indexOf("no-font-face") === -1 && /Android (1.0|1.1|1.5|1.6|2.0|2.1)|Nokia|Opera Mini|w(eb)?OSBrowser|webOS|UCWEB|Windows Phone OS 7|XBLWP7|ZuneWP7|MSIE 7/.test(navigator.userAgent) && (document.body.className += " no-font-face") }) }(document, window);
+        var wpAjax = jQuery.extend({ unserialize: function (a) { var b, c, d, e, f = {}; if (!a) return f; b = a.split("?"), b[1] && (a = b[1]), c = a.split("&"); for (d in c) jQuery.isFunction(c.hasOwnProperty) && !c.hasOwnProperty(d) || (e = c[d].split("="), f[e[0]] = e[1]); return f }, parseAjaxResponse: function (a, b, c) { var d = {}, e = jQuery("#" + b).empty(), f = ""; return a && "object" == typeof a && a.getElementsByTagName("wp_ajax") ? (d.responses = [], d.errors = !1, jQuery("response", a).each(function () { var b, e = jQuery(this), g = jQuery(this.firstChild); b = { action: e.attr("action"), what: g.get(0).nodeName, id: g.attr("id"), oldId: g.attr("old_id"), position: g.attr("position") }, b.data = jQuery("response_data", g).text(), b.supplemental = {}, jQuery("supplemental", g).children().each(function () { b.supplemental[this.nodeName] = jQuery(this).text() }).length || (b.supplemental = !1), b.errors = [], jQuery("wp_error", g).each(function () { var e, g, h, i = jQuery(this).attr("code"); e = { code: i, message: this.firstChild.nodeValue, data: !1 }, g = jQuery('wp_error_data[code="' + i + '"]', a), g && (e.data = g.get()), h = jQuery("form-field", g).text(), h && (i = h), c && wpAjax.invalidateForm(jQuery("#" + c + ' :input[name="' + i + '"]').parents(".form-field:first")), f += "<p>" + e.message + "</p>", b.errors.push(e), d.errors = !0 }).length || (b.errors = !1), d.responses.push(b) }), f.length && e.html('<div class="error">' + f + "</div>"), d) : isNaN(a) ? !e.html('<div class="error"><p>' + a + "</p></div>") : (a = parseInt(a, 10), -1 == a ? !e.html('<div class="error"><p>' + wpAjax.noPerm + "</p></div>") : 0 !== a || !e.html('<div class="error"><p>' + wpAjax.broken + "</p></div>")) }, invalidateForm: function (a) { return jQuery(a).addClass("form-invalid").find("input").one("change wp-check-valid-field", function () { jQuery(this).closest(".form-invalid").removeClass("form-invalid") }) }, validateForm: function (a) { return a = jQuery(a), !wpAjax.invalidateForm(a.find(".form-required").filter(function () { return "" === jQuery("input:visible", this).val() })).length } }, wpAjax || { noPerm: "Sorry, you are not allowed to do that.", broken: "An unidentified error has occurred." }); jQuery(document).ready(function (a) { a("form.validate").submit(function () { return wpAjax.validateForm(a(this)) }) });
+
+
+        /* <![CDATA[ */
+        var commonL10n = { "warnDelete": "You are about to permanently delete these items from your site.\nThis action cannot be undone.\n 'Cancel' to stop, 'OK' to delete.", "dismiss": "Dismiss this notice.", "collapseMenu": "Collapse Main menu", "expandMenu": "Expand Main menu" }; var wpAjax = { "noPerm": "Sorry, you are not allowed to do that.", "broken": "An unidentified error has occurred." }; var quicktagsL10n = { "closeAllOpenTags": "Close all open tags", "closeTags": "close tags", "enterURL": "Enter the URL", "enterImageURL": "Enter the URL of the image", "enterImageDescription": "Enter a description of the image", "textdirection": "text direction", "toggleTextdirection": "Toggle Editor Text Direction", "dfw": "Distraction-free writing mode", "strong": "Bold", "strongClose": "Close bold tag", "em": "Italic", "emClose": "Close italic tag", "link": "Insert link", "blockquote": "Blockquote", "blockquoteClose": "Close blockquote tag", "del": "Deleted text (strikethrough)", "delClose": "Close deleted text tag", "ins": "Inserted text", "insClose": "Close inserted text tag", "image": "Insert image", "ul": "Bulleted list", "ulClose": "Close bulleted list tag", "ol": "Numbered list", "olClose": "Close numbered list tag", "li": "List item", "liClose": "Close list item tag", "code": "Code", "codeClose": "Close code tag", "more": "Insert Read More tag" }; var adminCommentsL10n = { "hotkeys_highlight_first": "", "hotkeys_highlight_last": "", "replyApprove": "Approve and Reply", "reply": "Reply", "warnQuickEdit": "Are you sure you want to edit this comment?\nThe changes you made will be lost.", "warnCommentChanges": "Are you sure you want to do this?\nThe comment changes you made will be lost.", "docTitleComments": "Comments", "docTitleCommentsCount": "Comments (%s)" }; var postBoxL10n = { "postBoxEmptyString": "Drag boxes here" }; var _wpUtilSettings = { "ajax": { "url": "\/wordpress\/wp-admin\/admin-ajax.php" } }; var communityEventsData = { "nonce": "7ae37f336e", "cache": { "location": { "ip": "1.186.79.0" }, "events": [{ "type": "wordcamp", "title": "WordCamp Mumbai", "url": "https:\/\/2018.mumbai.wordcamp.org", "meetup": null, "meetup_url": null, "date": "2018-03-17 00:00:00", "location": { "location": "Mumbai, Maharashtra, India", "country": "IN", "latitude": 19.131794, "longitude": 72.9170956 }, "formatted_date": "Saturday, Mar 17, 2018", "formatted_time": "12:00 am" }] }, "l10n": { "enter_closest_city": "Enter your closest city to find nearby events.", "error_occurred_please_try_again": "An error occurred. Please try again.", "attend_event_near_generic": "Attend an upcoming event near you.", "could_not_locate_city": "We couldn&#8217;t locate %s. Please try another nearby city. For example: Kansas City; Springfield; Portland.", "city_updated": "City updated. Listing events near %s." } }; var thickboxL10n = { "next": "Next >", "prev": "< Prev", "image": "Image", "of": "of", "close": "Close", "noiframes": "This feature requires inline frames. You have iframes disabled or your browser does not support them.", "loadingAnimation": "https:\/\/s1.demo.opensourcecms.com\/wordpress\/wp-includes\/js\/thickbox\/loadingAnimation.gif" }; var plugininstallL10n = { "plugin_information": "Plugin:", "plugin_modal_label": "Plugin details", "ays": "Are you sure you want to install this plugin?" }; var _wpUpdatesSettings = { "ajax_nonce": "f8592069a6", "l10n": { "searchResults": "Search results for &#8220;%s&#8221;", "searchResultsLabel": "Search Results", "noPlugins": "You do not appear to have any plugins available at this time.", "noItemsSelected": "Please select at least one item to perform this action on.", "updating": "Updating...", "pluginUpdated": "Updated!", "themeUpdated": "Updated!", "update": "Update", "updateNow": "Update Now", "pluginUpdateNowLabel": "Update %s now", "updateFailedShort": "Update Failed!", "updateFailed": "Update Failed: %s", "pluginUpdatingLabel": "Updating %s...", "pluginUpdatedLabel": "%s updated!", "pluginUpdateFailedLabel": "%s update failed", "updatingMsg": "Updating... please wait.", "updatedMsg": "Update completed successfully.", "updateCancel": "Update canceled.", "beforeunload": "Updates may not complete if you navigate away from this page.", "installNow": "Install Now", "pluginInstallNowLabel": "Install %s now", "installing": "Installing...", "pluginInstalled": "Installed!", "themeInstalled": "Installed!", "installFailedShort": "Installation Failed!", "installFailed": "Installation failed: %s", "pluginInstallingLabel": "Installing %s...", "themeInstallingLabel": "Installing %s...", "pluginInstalledLabel": "%s installed!", "themeInstalledLabel": "%s installed!", "pluginInstallFailedLabel": "%s installation failed", "themeInstallFailedLabel": "%s installation failed", "installingMsg": "Installing... please wait.", "installedMsg": "Installation completed successfully.", "importerInstalledMsg": "Importer installed successfully. <a href=\"%s\">Run importer<\/a>", "aysDelete": "Are you sure you want to delete %s?", "aysDeleteUninstall": "Are you sure you want to delete %s and its data?", "aysBulkDelete": "Are you sure you want to delete the selected plugins and their data?", "aysBulkDeleteThemes": "Caution: These themes may be active on other sites in the network. Are you sure you want to proceed?", "deleting": "Deleting...", "deleteFailed": "Deletion failed: %s", "pluginDeleted": "Deleted!", "themeDeleted": "Deleted!", "livePreview": "Live Preview", "activatePlugin": "Activate", "activateTheme": "Activate", "activatePluginLabel": "Activate %s", "activateThemeLabel": "Activate %s", "activateImporter": "Run Importer", "activateImporterLabel": "Run %s", "unknownError": "An unidentified error has occurred.", "connectionError": "Connection lost or the server is busy. Please try again later.", "nonceError": "An error has occurred. Please reload the page and try again.", "pluginsFound": "Number of plugins found: %d", "noPluginsFound": "No plugins found. Try a different search." } }; var heartbeatSettings = { "nonce": "a5db98225b" }; var authcheckL10n = { "beforeunload": "Your session has expired. You can log in again from this page or go to the login page.", "interval": "180" }; var wpLinkL10n = { "title": "Insert\/edit link", "update": "Update", "save": "Add Link", "noTitle": "(no title)", "noMatchesFound": "No results found.", "linkSelected": "Link selected.", "linkInserted": "Link inserted." }; var uiAutocompleteL10n = { "noResults": "No results found.", "oneResult": "1 result found. Use up and down arrow keys to navigate.", "manyResults": "%d results found. Use up and down arrow keys to navigate.", "itemSelected": "Item selected." };/* ]]> */
+    </script>
+
+</head>
+<body>
+    <div id="wpwrap">
+        <div id="adminmenumain" role="navigation" aria-label="Main menu">
+            <div id="adminmenuwrap">
+                <ul id="adminmenu">
+                    <li class="wp-first-item wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-top-first menu-icon-dashboard menu-top-last" id="menu-dashboard">
+                        <a href="index.php" class="wp-first-item wp-has-submenu wp-has-current-submenu wp-menu-open menu-top menu-top-first menu-icon-dashboard menu-top-last" aria-haspopup="false"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-dashboard"><br></div><div class="wp-menu-name">Dashboard</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Dashboard</li><li class="wp-first-item current"><a href="index.php" class="wp-first-item current" aria-current="page">Home</a></li><li><a href="update-core.php">Updates <span class="update-plugins count-1"><span class="update-count">1</span></span></a></li></ul>
+                    </li>
+                    <li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-post open-if-no-js menu-top-first" id="menu-posts">
+                        <a href="edit.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-post open-if-no-js menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-post"><br></div><div class="wp-menu-name">Posts</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Posts</li><li class="wp-first-item"><a href="edit.php" class="wp-first-item">All Posts</a></li><li><a href="post-new.php">Add New</a></li><li><a href="edit-tags.php?taxonomy=category">Categories</a></li><li><a href="edit-tags.php?taxonomy=post_tag">Tags</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-media" id="menu-media">
+                        <a href="upload.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-media" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-media"><br></div><div class="wp-menu-name">Media</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Media</li><li class="wp-first-item"><a href="upload.php" class="wp-first-item">Library</a></li><li><a href="media-new.php">Add New</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-page" id="menu-pages">
+                        <a href="edit.php?post_type=page" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-page" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-page"><br></div><div class="wp-menu-name">Pages</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Pages</li><li class="wp-first-item"><a href="edit.php?post_type=page" class="wp-first-item">All Pages</a></li><li><a href="post-new.php?post_type=page">Add New</a></li></ul>
+                    </li>
+                    <li class="wp-not-current-submenu menu-top menu-icon-comments menu-top-last" id="menu-comments">
+                        <a href="edit-comments.php" class="wp-not-current-submenu menu-top menu-icon-comments menu-top-last"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-comments"><br></div><div class="wp-menu-name">Comments <span class="awaiting-mod count-0"><span class="pending-count">0</span></span></div></a>
+                    </li>
+                    <li class="wp-not-current-submenu wp-menu-separator" aria-hidden="true"><div class="separator"></div></li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-appearance menu-top-first" id="menu-appearance">
+                        <a href="themes.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-appearance menu-top-first" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-appearance"><br></div><div class="wp-menu-name">Appearance</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Appearance</li><li class="wp-first-item"><a href="themes.php" class="wp-first-item">Themes</a></li><li class="hide-if-no-customize"><a href="customize.php?return=%2Fwordpress%2Fwp-admin%2F" class="hide-if-no-customize">Customize</a></li><li><a href="widgets.php">Widgets</a></li><li><a href="nav-menus.php">Menus</a></li><li class="hide-if-no-customize"><a href="customize.php?return=%2Fwordpress%2Fwp-admin%2F&amp;autofocus%5Bcontrol%5D=header_image" class="hide-if-no-customize">Header</a></li><li><a href="themes.php?page=custom-header">Header</a></li><li><a href="theme-editor.php">Editor</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-plugins" id="menu-plugins">
+                        <a href="plugins.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-plugins" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-plugins"><br></div><div class="wp-menu-name">Plugins <span class="update-plugins count-1"><span class="plugin-count">1</span></span></div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Plugins <span class="update-plugins count-1"><span class="plugin-count">1</span></span></li><li class="wp-first-item"><a href="plugins.php" class="wp-first-item">Installed Plugins</a></li><li><a href="plugin-install.php">Add New</a></li><li><a href="plugin-editor.php">Editor</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users" id="menu-users">
+                        <a href="users.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-users" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-users"><br></div><div class="wp-menu-name">Users</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Users</li><li class="wp-first-item"><a href="users.php" class="wp-first-item">All Users</a></li><li><a href="user-new.php">Add New</a></li><li><a href="profile.php">Your Profile</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-tools" id="menu-tools">
+                        <a href="tools.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-tools" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-tools"><br></div><div class="wp-menu-name">Tools</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Tools</li><li class="wp-first-item"><a href="tools.php" class="wp-first-item">Available Tools</a></li><li><a href="import.php">Import</a></li><li><a href="export.php">Export</a></li><li><a href="network.php">Network Setup</a></li></ul>
+                    </li>
+                    <li class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-settings menu-top-last" id="menu-settings">
+                        <a href="options-general.php" class="wp-has-submenu wp-not-current-submenu menu-top menu-icon-settings menu-top-last" aria-haspopup="true"><div class="wp-menu-arrow"><div></div></div><div class="wp-menu-image dashicons-before dashicons-admin-settings"><br></div><div class="wp-menu-name">Settings</div></a>
+                        <ul class="wp-submenu wp-submenu-wrap"><li class="wp-submenu-head" aria-hidden="true">Settings</li><li class="wp-first-item"><a href="options-general.php" class="wp-first-item">General</a></li><li><a href="options-writing.php">Writing</a></li><li><a href="options-reading.php">Reading</a></li><li><a href="options-discussion.php">Discussion</a></li><li><a href="options-media.php">Media</a></li><li><a href="options-permalink.php">Permalinks</a></li></ul>
+                    </li>
+                    <li id="collapse-menu" class="hide-if-no-js"><button type="button" id="collapse-button" aria-label="Collapse Main menu" aria-expanded="true"><span class="collapse-button-icon" aria-hidden="true"></span><span class="collapse-button-label">Collapse menu</span></button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

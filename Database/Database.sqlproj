@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{836c3997-bc6e-448e-a9f8-a70ed3e8c000}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Expense_Import.sql" />
+    <Build Include="dbo\Tables\FileInfo.sql" />
+    <Build Include="dbo\Tables\FiscalYearByLiquorBoard.sql" />
+    <Build Include="dbo\Tables\LiquorBoard.sql" />
+    <Build Include="dbo\Tables\Logistics.sql" />
+    <Build Include="dbo\Tables\PM_Owner.sql" />
+    <Build Include="dbo\Tables\Product.sql" />
+    <Build Include="dbo\Tables\ProductCase.sql" />
+    <Build Include="dbo\Tables\ProductDetails.sql" />
+    <Build Include="dbo\Tables\Program.sql" />
+    <Build Include="dbo\Tables\Program_ATL_BTL.sql" />
+    <Build Include="dbo\Tables\ProgramCost.sql" />
+    <Build Include="dbo\Tables\ProgramExpense.sql" />
+    <Build Include="dbo\Tables\ProgramSKU_BrandBased.sql" />
+    <Build Include="dbo\Tables\ProgramStatus.sql" />
+    <Build Include="dbo\Tables\ProgramType.sql" />
+    <Build Include="dbo\Tables\Province.sql" />
+    <Build Include="dbo\Tables\Province_BAMCost.sql" />
+    <Build Include="dbo\Tables\Relation_ProgramType_ProgramCost.sql" />
+    <Build Include="dbo\Tables\SGWSFiscal.sql" />
+    <Build Include="dbo\Tables\Shipping.sql" />
+    <Build Include="dbo\Tables\SubCategory.sql" />
+    <Build Include="dbo\Tables\SuperProgram.sql" />
+    <Build Include="dbo\Tables\Supplier.sql" />
+    <Build Include="dbo\Tables\SupplierContact.sql" />
+    <Build Include="dbo\Tables\SupplierInternalCode.sql" />
+    <Build Include="dbo\Tables\Test_ExcelImport.sql" />
+    <Build Include="dbo\Tables\Tmp_ParseError.sql" />
+    <Build Include="dbo\Tables\TMP_ProductInfo_Archive.sql" />
+    <Build Include="dbo\Tables\TMP_ProductInfo_old.sql" />
+    <Build Include="dbo\Tables\TMP_ProgramImport.sql" />
+    <Build Include="dbo\Tables\UserBrand.sql" />
+    <Build Include="dbo\Tables\UserBusinessType.sql" />
+    <Build Include="dbo\Tables\UserProvince.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserSupplier.sql" />
+    <Build Include="dbo\Tables\aspnet_Applications.sql" />
+    <Build Include="dbo\Tables\aspnet_Users.sql" />
+    <Build Include="dbo\Tables\TMP_ProductInfo.sql" />
+    <Build Include="dbo\Tables\aspnet_Membership.sql" />
+    <Build Include="dbo\Tables\aspnet_Profile.sql" />
+    <Build Include="dbo\Tables\aspnet_Roles.sql" />
+    <Build Include="dbo\Tables\aspnet_UsersInRoles.sql" />
+    <Build Include="dbo\Tables\aspnet_Paths.sql" />
+    <Build Include="dbo\Tables\aspnet_PersonalizationAllUsers.sql" />
+    <Build Include="dbo\Tables\aspnet_PersonalizationPerUser.sql" />
+    <Build Include="dbo\Tables\Archive_ProductInfo.sql" />
+    <Build Include="dbo\Tables\aspnet_SchemaVersions.sql" />
+    <Build Include="dbo\Tables\aspnet_WebEvent_Events.sql" />
+    <Build Include="dbo\Tables\Brand.sql" />
+    <Build Include="dbo\Tables\BusinessType.sql" />
+    <Build Include="dbo\Tables\Category.sql" />
+    <Build Include="dbo\Tables\ChangeLog_ProductInfo.sql" />
+    <Build Include="dbo\Tables\CSPC_ACD.sql" />
+    <Build Include="dbo\Tables\Expense.sql" />
+    <Build Include="dbo\Views\vw_aspnet_Applications.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_Users.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_TMP_ProductInfo_GetErrorData.sql" />
+    <Build Include="dbo\Views\vw_ACD_CSPC_Code.sql" />
+    <Build Include="dbo\Views\vw_aspnet_MembershipUsers.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_Profiles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_Roles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_UsersInRoles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_WebPartState_Paths.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_WebPartState_Shared.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Views\vw_aspnet_WebPartState_User.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\aspnet_WebEvent_FullAccess.sql" />
+    <Build Include="Security\aspnet_Roles_ReportingAccess.sql" />
+    <Build Include="Security\aspnet_Roles_FullAccess.sql" />
+    <Build Include="Security\aspnet_Roles_BasicAccess.sql" />
+    <Build Include="Security\aspnet_Profile_ReportingAccess.sql" />
+    <Build Include="Security\aspnet_Profile_FullAccess.sql" />
+    <Build Include="Security\aspnet_Profile_BasicAccess.sql" />
+    <Build Include="Security\aspnet_Personalization_ReportingAccess.sql" />
+    <Build Include="Security\aspnet_Personalization_FullAccess.sql" />
+    <Build Include="Security\aspnet_Personalization_BasicAccess.sql" />
+    <Build Include="Security\aspnet_Membership_ReportingAccess.sql" />
+    <Build Include="Security\aspnet_Membership_FullAccess.sql" />
+    <Build Include="Security\aspnet_Membership_BasicAccess.sql" />
+    <Build Include="dbo\Functions\CheckProgramAllocateExpenseAccess.sql" />
+    <Build Include="dbo\Functions\CheckUserProgramPermission.sql" />
+    <Build Include="dbo\Functions\fn_diagramobjects.sql" />
+    <Build Include="dbo\Functions\GetNumbers.sql" />
+    <Build Include="dbo\Functions\MonthToDays365.sql" />
+    <Build Include="dbo\Functions\MonthToDays366.sql" />
+    <Build Include="dbo\Functions\MonthToDays.sql" />
+    <Build Include="dbo\Functions\DateToTicks.sql" />
+    <Build Include="dbo\Functions\TimeToTicks.sql" />
+    <Build Include="dbo\Functions\DateTimeToTicks.sql" />
+    <Build Include="dbo\Functions\SplitString.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAllUsers_ResetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAllUsers_SetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationPerUser_GetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationPerUser_ResetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationPerUser_SetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_DeleteInactiveProfiles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_DeleteProfiles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetNumberOfInactiveProfiles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetProfiles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_GetProperties.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Profile_SetProperties.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_RegisterSchemaVersion.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Roles_CreateRole.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Roles_DeleteRole.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Roles_GetAllRoles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Roles_RoleExists.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Setup_RemoveAllRoleMembers.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Setup_RestorePermissions.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UnRegisterSchemaVersion.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Users_CreateUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Users_DeleteUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_AddUsersToRoles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_FindUsersInRole.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_GetRolesForUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_GetUsersInRoles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_IsUserInRole.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_UsersInRoles_RemoveUsersFromRoles.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_WebEvent_LogEvent.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\CheckEmailIDExistUser.sql" />
+    <Build Include="dbo\Stored Procedures\CopySuperProgram.sql" />
+    <Build Include="dbo\Stored Procedures\DeAllocateExpense.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllocatedExpenses.sql" />
+    <Build Include="dbo\Stored Procedures\GetBAMCostAndProductByProgram.sql" />
+    <Build Include="dbo\Stored Procedures\GetBAMCostByProvince.sql" />
+    <Build Include="dbo\Stored Procedures\GetExpenseData.sql" />
+    <Build Include="dbo\Stored Procedures\GetGID.sql" />
+    <Build Include="dbo\Stored Procedures\GetImportExpenseDropdown.sql" />
+    <Build Include="dbo\Stored Procedures\GetLiquorBoardPeriod.sql" />
+    <Build Include="dbo\Stored Procedures\GetProductDetailsBy_GID_Province.sql" />
+    <Build Include="dbo\Stored Procedures\GetProgramCostFieldsByType.sql" />
+    <Build Include="dbo\Stored Procedures\GetProgramDetailsByProgramId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProgramDetailsBySuperProgramId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProgramDropdowns.sql" />
+    <Build Include="dbo\Stored Procedures\GetProgramPopupDropdowns.sql" />
+    <Build Include="dbo\Stored Procedures\GetSGWSFiscalYear.sql" />
+    <Build Include="dbo\Stored Procedures\GetStart_EndDate_ByLiquorBoardPeriod.sql" />
+    <Build Include="dbo\Stored Procedures\InsertExpenseData.sql" />
+    <Build Include="dbo\Stored Procedures\InsertMasterSkuListData.sql" />
+    <Build Include="dbo\Stored Procedures\InsertMasterSkuListData_old.sql" />
+    <Build Include="dbo\Stored Procedures\InsertUpdateProgram.sql" />
+    <Build Include="dbo\Stored Procedures\InsertUpdateSuperProgram.sql" />
+    <Build Include="dbo\Stored Procedures\sp_alterdiagram.sql" />
+    <Build Include="dbo\Stored Procedures\sp_creatediagram.sql" />
+    <Build Include="dbo\Stored Procedures\sp_dropdiagram.sql" />
+    <Build Include="dbo\Stored Procedures\sp_helpdiagramdefinition.sql" />
+    <Build Include="dbo\Stored Procedures\sp_helpdiagrams.sql" />
+    <Build Include="dbo\Stored Procedures\sp_renamediagram.sql" />
+    <Build Include="dbo\Stored Procedures\sp_upgraddiagrams.sql" />
+    <Build Include="dbo\Stored Procedures\USA_Chart_GetTop10Suppliers.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Chart_GetProductCountByCategory.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Delete_Record.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetRegionalViewDropdowns.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetUser.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetUsers_By_Page.sql" />
+    <Build Include="dbo\Stored Procedures\USP_GetUsersDropdowns.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Program_GetData.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Program_GetData_Detail.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Program_GetprogramSpendData.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Program_InsertProgramData.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Reports_GetRegionalViewByBrand.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Reports_RegionalView_UpdateProgramStaus.sql" />
+    <Build Include="dbo\Stored Procedures\VerifyUserLogin.sql" />
+    <Build Include="dbo\Stored Procedures\GetBrand_Products_BySupplier.sql" />
+    <Build Include="dbo\Stored Procedures\GetProductDetailsByGID.sql" />
+    <Build Include="dbo\Stored Procedures\GetProducts_BySupplier_Brand.sql" />
+    <Build Include="dbo\Stored Procedures\USP_Reports_GetRegionalViewByBrand_Periods.sql" />
+    <Build Include="dbo\Stored Procedures\AddEditUser.sql" />
+    <Build Include="dbo\Stored Procedures\AllocateExpense.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_AnyDataInTables.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Applications_CreateApplication.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_CheckSchemaVersion.sql" />
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_ChangePasswordQuestionAndAnswer.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_CreateUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_FindUsersByEmail.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_FindUsersByName.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetAllUsers.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetNumberOfUsersOnline.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetPassword.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetPasswordWithFormat.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetUserByEmail.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetUserByName.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_GetUserByUserId.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_ResetPassword.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_SetPassword.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_UnlockUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_UpdateUser.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Membership_UpdateUserInfo.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Paths_CreatePath.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_Personalization_GetApplicationId.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAdministration_DeleteAllState.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAdministration_FindState.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAdministration_GetCountOfState.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAdministration_ResetSharedState.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAdministration_ResetUserState.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\aspnet_PersonalizationAllUsers_GetPageSettings.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\User Defined Types\dtCompanyDetails.sql" />
+    <Build Include="dbo\User Defined Types\dtCompanyEquipment.sql" />
+    <Build Include="dbo\User Defined Types\dtCompanyTree.sql" />
+    <Build Include="dbo\User Defined Types\dtFacilityDetails.sql" />
+    <Build Include="dbo\User Defined Types\dtFemsInspectionCompany.sql" />
+    <Build Include="dbo\User Defined Types\dtProperty.sql" />
+    <Build Include="Security\aspnet_Membership_BasicAccess_1.sql" />
+    <Build Include="Security\aspnet_Membership_FullAccess_1.sql" />
+    <Build Include="Security\aspnet_Membership_ReportingAccess_1.sql" />
+    <Build Include="Security\aspnet_Personalization_BasicAccess_1.sql" />
+    <Build Include="Security\aspnet_Personalization_FullAccess_1.sql" />
+    <Build Include="Security\aspnet_Personalization_ReportingAccess_1.sql" />
+    <Build Include="Security\aspnet_Profile_BasicAccess_1.sql" />
+    <Build Include="Security\aspnet_Profile_FullAccess_1.sql" />
+    <Build Include="Security\aspnet_Profile_ReportingAccess_1.sql" />
+    <Build Include="Security\aspnet_Roles_BasicAccess_1.sql" />
+    <Build Include="Security\aspnet_Roles_FullAccess_1.sql" />
+    <Build Include="Security\aspnet_Roles_ReportingAccess_1.sql" />
+    <Build Include="Security\aspnet_WebEvent_FullAccess_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetCalendarView.sql" />
+    <Build Include="dbo\Stored Procedures\GetSummaryRollup.sql" />
+    <Build Include="dbo\Stored Procedures\GetCostBreakupByProgramType.sql" />
+  </ItemGroup>
+</Project>

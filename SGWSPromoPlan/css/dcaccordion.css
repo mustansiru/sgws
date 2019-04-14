@@ -1,0 +1,57 @@
+
+#accordionmenu ul, #accordionmenu ul li {
+    list-style: none;
+    padding: 0;
+    float: left;
+    width: 100%;
+}
+
+    #accordionmenu ul .text {
+        margin-bottom: 1em;
+        line-height: 1.5em;
+    }
+
+#accordionmenu .text-center {
+    text-align: center;
+}
+
+#accordionmenu body {
+    font: normal 13px Arial, sans-serif;
+}
+
+#accordionmenu .clear {
+    clear: both;
+}
+
+#accordionmenu .dcjq-count {
+    float: right;
+}
+
+
+#accordionmenu_master ul, #accordionmenu_master ul li {
+    list-style: none;
+    padding: 0;
+    float: left;
+    width: 100%;
+}
+
+    #accordionmenu_master ul .text {
+        margin-bottom: 1em;
+        line-height: 1.5em;
+    }
+
+#accordionmenu_master .text-center {
+    text-align: center;
+}
+
+#accordionmenu_master body {
+    font: normal 13px Arial, sans-serif;
+}
+
+#accordionmenu_master .clear {
+    clear: both;
+}
+
+#accordionmenu_master .dcjq-count {
+    float: right;
+}

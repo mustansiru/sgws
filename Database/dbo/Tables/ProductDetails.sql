@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[ProductDetails] (
+    [Id]                      BIGINT          IDENTITY (1, 1) NOT NULL,
+    [GID]                     VARCHAR (50)    NOT NULL,
+    [ABV_Per]                 DECIMAL (10, 2) NULL,
+    [Appellation]             VARCHAR (500)   NULL,
+    [Colour]                  VARCHAR (500)   NULL,
+    [Residual_Sugar]          VARCHAR (500)   NULL,
+    [Grape_Varietals]         VARCHAR (500)   NULL,
+    [Variety]                 VARCHAR (500)   NULL,
+    [Flavour]                 VARCHAR (500)   NULL,
+    [Origin_Country]          VARCHAR (50)    NULL,
+    [Closure_Type]            VARCHAR (50)    NULL,
+    [Closure_Weight]          DECIMAL (10, 2) NULL,
+    [Bottle_Weight]           DECIMAL (10, 2) NULL,
+    [Bottle_Height]           DECIMAL (10, 2) NULL,
+    [Bottle_Length]           DECIMAL (10, 2) NULL,
+    [Bottle_Width]            DECIMAL (10, 2) NULL,
+    [Empty_Bottle_Weight]     DECIMAL (10, 2) NULL,
+    [ContainerType]           VARCHAR (50)    NULL,
+    [Containers_Selling_Unit] INT             NULL,
+    [Selling_Units_Case]      INT             NULL,
+    [ContainerVolume]         INT             NULL,
+    CONSTRAINT [PK_ProductDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

@@ -1,0 +1,472 @@
+﻿<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <style type="text/css">
+        /* Resets: see reset.css for details */
+        .ReadMsgBody {
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        .ExternalClass {
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        html {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            -webkit-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        img {
+            display: block !important;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+            border: none;
+            height: auto;
+            line-height: 100%;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        br {
+            line-height: 0 !important;
+        }
+
+        div, p, span, strong, b, em, i, a, li, td {
+            -webkit-text-size-adjust: none;
+        }
+
+        .b-letter__body {
+            background: #cccccc !important;
+        }
+
+        table td, table tr {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+
+
+        @media only screen and (max-width: 640px) {
+            body {
+                width: auto !important;
+            }
+
+            table[class="container"], td[class="container"] {
+                width: 100% !important;
+            }
+
+            table[class="container-inner"] {
+                width: 100% !important;
+            }
+
+            table[class="remove-space-width"] {
+                display: none !important;
+            }
+
+            table[class="layout-1-col"] {
+                margin-right: 20px !important;
+                width: 30% !important;
+            }
+
+            table[class="layout-1-col-last"] {
+                width: 30% !important;
+            }
+
+            table[class="remove"] {
+                display: none !important;
+            }
+
+            td[class="image-180"] img {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+            }
+
+            td[class="image-80"] img {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+            }
+
+            td[class="image-130"] img {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+            }
+
+            table[class="gallery-col"] {
+                margin-right: 20px !important;
+                width: 21% !important;
+            }
+
+            table[class="gallery-col-last"] {
+                width: 21% !important;
+            }
+
+            table[class="col-3-container"] {
+                width: 250px !important;
+            }
+
+            table[class="col-3"] {
+                width: 180px !important;
+            }
+
+            table[class="container-price"] {
+                float: none !important;
+                margin: 0 auto;
+            }
+        }
+
+        @media only screen and (max-width: 570px) {
+            table[class="col-3-container"] {
+                width: 190px !important;
+            }
+
+            table[class="col-3"] {
+                width: 120px !important;
+            }
+        }
+
+        @media only screen and (max-width: 490px) {
+            table[class="gallery-col"] {
+                margin-right: 10px !important;
+                width: 45% !important;
+            }
+
+            table[class="gallery-col-last"] {
+                width: 45% !important;
+            }
+
+
+            table[class="container-social"] {
+                width: 100% !important;
+            }
+
+            table[class="remove"] {
+                display: none !important;
+            }
+
+            table[class="remove-ly-3"] img {
+                width: 5px !important;
+            }
+
+            table[class="container-layout-3"], td[class="container-layout-3"] {
+                width: 100% !important;
+            }
+
+
+
+            td[class="add-20"] {
+                height: 20px !important;
+            }
+
+            td[class="add-18"] {
+                height: 18px !important;
+            }
+
+            table[class="layout-1-col"] {
+                margin-right: 0px !important;
+                width: 100% !important;
+            }
+
+            table[class="layout-1-col-last"] {
+                width: 100% !important;
+            }
+
+            td[class="image-180"] {
+                text-align: center !important;
+            }
+
+                td[class="image-180"] img {
+                    width: 100% !important;
+                    height: auto !important;
+                    max-width: 180px !important;
+                    min-width: 124px !important;
+                }
+
+            td[class="image-80"] {
+                text-align: center !important;
+            }
+
+            td[class="image-130"] img {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 130px !important;
+                min-width: 100px !important;
+            }
+
+            td[class="align-center"] {
+                text-align: center !important;
+            }
+
+            td[class="td-indent"] {
+                padding: 0 20px !important;
+            }
+
+            table[class="col-3-container"] {
+                width: 100% !important;
+            }
+
+            table[class="col-3"] {
+                width: 80% !important;
+            }
+        }
+    </style>
+</head>
+<body style="height:100%; background-color:#dde0e2; width:100%; ">
+    <div style="background-color:#eeeeee;margin: 0; -webkit-font-smoothing: antialiased;-ms-text-size-adjust:none; width:100%;margin:0 auto;padding:10px 0; ">
+        <table border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color: #ffffff;" align="center" class="container">
+            <tbody>
+                <tr>
+                    <td align="center" valign="top">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #3a3f50;border-radius:10px 10px 0px 0px;">
+                            <!-- start space -->
+                            <tbody>
+                                <!--<tr>
+                                    <td valign="top" height="46" class="add-20"></td>
+                                </tr>-->
+                                <!-- end space -->
+                                <tr>
+                                    <td align="center" valign="top" width="100%" class="container" style="background:#22add9!important;">
+                                        <!-- start space width -->
+                                        <table class="remove" width="40" border="0" cellpadding="0" cellspacing="0" align="center" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="40" height="2" style="font-size: 0;line-height: 0;border-collapse: collapse;">
+                                                        <p style="padding-left: 40px;">&nbsp;</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- end space width -->
+                                        <!-- logo -->
+                                        <table border="0" cellspacing="0" cellpadding="0" class="container-social" align="left" style="width: 100%;margin: 15px 0px 15px 0px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="top" align="center" style="background: #fff;text-align:center!important;margin:0 auto;width:100%;height:67px;">
+                                                        <a href="http://clairifi.com" style="text-decoration:none;height:67px;">
+                                                            <img src="http://clairifi.com//wp-content/uploads/2017/11/cropped-cropped-CLAIRIFI-LOGO.png" alt="logo" hspace="0" vspace="0" style="border:none;width:30%;padding:0 0 0 1%;margin: 0 auto;">
+                                                        </a>
+                                                    </td>
+                                                    <!--<td style="width:30%;height:67px;">
+                                                        <div style="border-radius:0px 6px 6px 0px; background: #fff;border:none;width:30%;height:67px;padding:2% 35% 5% 20%;">
+                                                            <a href="https://twitter.com/clairifi" title="Twitter" style="float:left;width:50%;margin-top:50%;">
+                                                                <img src="https://qa-regtech.azurewebsites.net/images/twitter.png" style="width:100%;" />
+                                                            </a>
+                                                            <a href="https://www.linkedin.com/company/clairifi-com/" title="LinkedIn" style="width:50%;float:left;margin-top:50%;">
+                                                                <img src="https://qa-regtech.azurewebsites.net/images/linkedin.png" style="width:100%;" />
+                                                            </a>
+                                                        </div>
+                                                    </td>-->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- end logo -->
+                                    </td>
+                                </tr>
+                                <!-- start space -->
+                                <tr>
+                                    <td valign="top" height="2" class="add-20"></td>
+                                </tr>
+                                <!-- end space -->
+                            </tbody>
+                        </table>
+                        <!-- start layout-1 block -->
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <!-- start space -->
+                            <tbody>
+                                <tr>
+                                    <td valign="top" height="10"></td>
+                                </tr>
+                                <!-- end space -->
+                            </tbody>
+                        </table>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <!--start space height -->
+                                <tr>
+                                    <td height="40"></td>
+                                </tr>
+                                <!--end space height -->
+                                <tr>
+                                    <td valign="top">
+                                        <h4 style="margin:10px!important;font-size:22px;line-height:32px;color:#303541;font-weight:normal;letter-spacing:-1px; padding:0; margin: 0; font-family: Arial,Tahoma, Helvetica, sans-serif;">
+                                            Dear {USERNAME},
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <!--start space height -->
+                                <tr>
+                                    <td height="14"></td>
+                                </tr>
+                                <!--end space height -->
+                                <tr>
+                                    <td valign="top" style="font-size: 13px; line-height: 18px; margin: 0; padding: 0; color:#3a3f50; font-family: Arial,Tahoma, Helvetica, sans-serif;">
+                                        <p style="margin:10px!important;">
+                                            Please find attached your Clairifi Compliance Insight Report.
+                                            <a style="color:#22add9;text-decoration:none!important;" href="mailto:demo@clairifi.com">Contact us</a> for a demonstration of how Clairifi can help you maximize tax savings, increase efficiency and identify opportunities to capitalize on carbon credit offset projects.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <!--start space height -->
+                                <tr>
+                                    <td height="36"></td>
+                                </tr>
+                                <!--end space height -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- start layout-3 container -->
+        <table border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color: #22add9;" align="center" class="container">
+            <!--start space height -->
+            <tbody>
+                <tr>
+                    <td height="26"></td>
+                </tr>
+                <!--end space height -->
+                <tr>
+                    <td valign="top">
+
+                        <table style="width:100%;" border="0" cellspacing="0" cellpadding="0" align="left">
+                            <tbody>
+                                <tr>
+                                    <td valign="top" style="color:#fff;font-size:18px;font-weight:bold;line-height:20px;font-family: Arial,Tahoma, Helvetica, sans-serif; padding: 0;margin: 0;" class="align-center">
+                                        <i>
+                                            Thank you,<br />
+                                            <strong><a style="color:#fff;" href="http://clairifi.com">clairifi.com</a></strong>
+                                        </i>
+                                    </td>
+                                </tr>
+                                <!--start space height -->
+                                <tr>
+                                    <td height="16"></td>
+                                </tr>
+                                <!--end space height -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end layout-3 container -->
+        <!-- start layout-6 container -->
+        <table border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color: #ffffff;" align="center" class="container">
+            <!--start space height -->
+            <tbody>
+                <tr>
+                    <td height="28"></td>
+                </tr>
+                <!--end space height -->
+                <tr>
+                    <td valign="top">
+                        <table style="width:100%;" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr style="margin-left:10%;">
+                                    <td colspan="2" align="center" valign="top" style="padding: 0 40px; margin: 0; font-size: 13px;line-height: 18px; color:#3a3f50;font-family: Arial,Tahoma, Helvetica, sans-serif;">
+                                        <h4 style="font-size:20px;line-height:32px;color:#303541;font-weight:normal;letter-spacing:-1px; padding:0; margin: 0; font-family: Arial,Tahoma, Helvetica, sans-serif;">
+                                            Contact Us
+                                        </h4>
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:45%;padding-right:5%;text-align:right;">
+                                        Calgary: +1 (403) 444-5393
+                                        <br />
+                                        Toronto: +1 (416) 222-9462
+                                        <br />
+                                    </td>
+                                    <td style="width:45%;padding-left:5%;text-align:left;">
+                                        Banker's Hall, <br />
+                                        315 8 Ave SW Calgary,<br /> AB T2P 4K1.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <!--start space height -->
+                <tr>
+                    <td height="28"></td>
+                </tr>
+                <!--end space height -->
+            </tbody>
+        </table>
+        <!-- end layout-6 container -->
+        <!-- start layout-7 container -->
+        <table border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color: #33383f;" align="center" class="container">
+            <!--start space height -->
+            <tbody>
+                <tr>
+                    <td height="28"></td>
+                </tr>
+                <!--end space height -->
+                <tr>
+                    <td valign="top">
+                        <table border="0" style="width:100%;" cellspacing="0" cellpadding="0" align="center">
+                            <tbody>
+                                <tr>
+                                    <td align="center" valign="top" style="text-transform:uppercase; text-align:center; color:#dde0e2; font-size:14px; padding: 0;font-family: Arial,Tahoma, Helvetica, sans-serif; margin: 0;">
+                                        <div>2018 Clairifi Inc.</div>
+                                        <div style="text-align:left;width:calc(50% - 5px);float:left;margin-right:5px;margin-top:10px;">
+                                            <a href="https://twitter.com/clairifi" title="Twitter">
+                                                <img src="https://qa-regtech.azurewebsites.net/images/twitter.png" style="float:right;width:40px;" />
+                                            </a>
+                                        </div>
+                                        <div style="text-align:right;width:calc(50% - 5px);float:left;margin-left:5px;margin-top:10px;">
+                                            <a href="https://www.linkedin.com/company/clairifi-com/" title="LinkedIn">
+                                                <img src="https://qa-regtech.azurewebsites.net/images/linkedin.png" style="float:left;width:40px;" />
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <!--start space height -->
+                                <tr>
+                                    <td height="28"></td>
+                                </tr>
+                                <!--end space height -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end layout-7 container -->
+    </div>
+</body>
+</html>

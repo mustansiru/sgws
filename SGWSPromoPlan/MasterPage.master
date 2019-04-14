@@ -1,0 +1,639 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="~/MasterPage.master.cs" Inherits="adminsection_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>A & P Planning Portal</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.css" />
+    <%--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />--%>
+    <%--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>--%>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script src="../js/jquery.cookie.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../stylesheets/theme.css" />
+
+    <style>
+        td.details-control {
+            background: url('../images/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('../images/details_close.png') no-repeat center center;
+        }
+
+        .greencolor {
+            background-color: #1abc9c !important;
+            color: #fff;
+        }
+
+        .nopadding {
+            padding: 0 !important;
+        }
+
+        .nopadding-left {
+            padding-left: 0 !important;
+        }
+
+        .nopadding-right {
+            padding-right: 0 !important;
+        }
+
+        .btninfo {
+            border-radius: 0 3px 3px 0px !important;
+        }
+
+        .datepickerMonth input[type=text] {
+            height: 36px !important;
+        }
+    </style>
+    <style>
+        #divLoading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            display: block;
+            opacity: 0.7;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loading-image {
+            position: absolute;
+            top: 300px;
+            left: 550px;
+            z-index: 100;
+        }
+    </style>
+    <script>
+        $(function () {
+            //setup ajax error handling
+            $.ajaxSetup({
+                error: function (x, status, error) {
+                    if (x.status == 403) {
+                        alert("Sorry, your session has expired. Please login again to continue");
+                        window.location.href = "/login.aspx";
+                    }
+                    else {
+                        alert("An error occurred: " + status + "nError: " + error);
+                    }
+                }
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body class="theme-blue">
+    <div id="divLoading" style="display: none;">
+        <img id="loading-image" src="images/loading-icons/loading8.gif" alt="Loading..." />
+    </div>
+
+    <form id="form1" runat="server" autocomplete="off">
+        <%--<asp:ScriptManager runat="server"></asp:ScriptManager>--%>
+        <script type="text/javascript">
+            $(function () {
+                var uls = $('.sidebar-nav > ul > *').clone();
+                uls.addClass('visible-xs');
+                $('#main-menu').append(uls.clone());
+            });
+
+            function ShowHide_SideMenu() {
+                $(".wrapper").toggleClass("active");
+
+                if (localStorage.getItem("SideMenu") != null) {
+                    if (localStorage.getItem("SideMenu") == "1") {
+                        localStorage.setItem("SideMenu", "0");
+                        SiteMenuOpenClose();
+                    }
+                    else {
+                        localStorage.setItem("SideMenu", "1");
+                        SiteMenuOpenClose();
+                    }
+                }
+                else {
+                    localStorage.setItem("SideMenu", "0");
+                    SiteMenuOpenClose();
+                }
+
+                return false;
+            }
+
+            var speed = 500;
+
+            function SiteMenuOpenClose() {
+                if (localStorage.getItem("SideMenu") != null) {
+                    if (localStorage.getItem("SideMenu") == "0") {
+                        $(".wrapper").removeClass('active');
+                        $(".wrapper").addClass('active');
+                    }
+                    else {
+                        $(".wrapper").removeClass('active');
+                    }
+                }
+                else {
+                    $(".wrapper").removeClass('active');
+                }
+
+                SetTableWidth();
+
+                window.setTimeout(function () {
+                    redrawHighcharts();
+                }, 1000);
+
+                return false;
+            }
+            function redrawHighcharts() {
+                if ($("div[data-highcharts-chart]").length > 0) {
+                    for (var i = 0; i < Highcharts.charts.length; i++) {
+                        Highcharts.charts[i].reflow();
+                    }
+                }
+            }
+
+            function SetTableWidth() {
+                $(".dataTable").css('width', '100%');
+                return false;
+            }
+        </script>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png" />
+
+        <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+        <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+        <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+        <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+        <!--[if (gt IE 9)|!(IE)]><!-->
+
+        <!--<![endif]-->
+        <div class="navbar navbar-default leftmenuheader" role="navigation" style="background: #fff!important; border-bottom: solid 2px #3A4651; margin-bottom: 0px;">
+            <div class="navbar-header adminheader">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <%-- <a class="" style=""><span class="glyphicon glyphicon-align-justify pull-right"></span>MENU</a>--%>
+                <a id="toggle-btn" class="menu-btn push_menu" onclick="return ShowHide_SideMenu();"><i class="fa fa-reorder"></i></a><%--onclick="return ShowHide_SideMenu();"--%>
+                <a href="dashboard.aspx">
+                    <div id="divLogoleft" style="margin: 10px; display: inline;">
+                        <img src="../logo.png" width="50" height="50" alt="logo" />
+                    </div>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="div-header-right" style="height: 1px; margin-left: 250px;">
+
+                <ul id="main-menu" class="nav navbar-nav navbar-right">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #3A4651 !important;">
+                            <i class="glyphicon glyphicon-user"></i><span class="padding-left-small"></span><span id="spanUserName" runat="server" class="padding-right-small" style="position: relative; top: 1px;"></span><span runat="server"></span>
+                            <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu logout_text">
+                            <li>
+                                <asp:HyperLink ID="hlProfileTop" runat="server"><i class="fa fa-user"></i><span class="padding-left"><asp:Label runat="server" Text="Profile" ></asp:Label></span></asp:HyperLink></li>
+                            <li>
+                                <asp:HyperLink ID="hlChangePasswordTop" runat="server"><i class="fa fa-unlock-alt"></i><span class="padding-left"><asp:Label runat="server" Text="Change Password" ></asp:Label></span></asp:HyperLink></li>
+                            <li class="divider"></li>
+                            <li>
+                                <asp:HyperLink ID="hllogout" runat="server"><i class="fa fa-sign-out"></i><span class="padding-left"><asp:Label runat="server" Text="Logout" ></asp:Label></span></asp:HyperLink></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div id="sticky-anchor"></div>
+            <div class="sidebar-nav" id="sticky">
+                <ul>
+                    <li id="liDashoardData" runat="server"><a href="javascript:void(0);" data-target=".reports-dashboard" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;<asp:Label runat="server" Text="DASHBOARD"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li id="liDashboardDataLinks" runat="server">
+                        <ul class="reports-dashboard nav nav-list collapse in">
+                            <li id="liDashboard" runat="server">
+                                <asp:HyperLink ID="hlDashboard" runat="server"><span class="fa fa-caret-right" id="spanDashboard" runat="server"></span>&nbsp;<asp:Label ID="lblDashboard" runat="server" Text="Dashboard"></asp:Label></asp:HyperLink></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="javascript:void(0);" data-target=".program-menu" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-tasks"></i>&nbsp;<asp:Label runat="server" Text="Program"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li>
+                        <ul class="program-menu nav nav-list collapse in">
+                            <li id="liManageProgram" runat="server">
+                                <asp:HyperLink ID="hlManageProgram" runat="server"><span class="fa fa-caret-right" id="spanManageProgram" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Manage Program"></asp:Label></asp:HyperLink></li>
+                            <%--<li id="liUpdateProgramDetails" runat="server">
+                                <asp:HyperLink ID="hlUpdateProgramDetails" runat="server"><span class="fa fa-caret-right" id="spanUpdateProgramDetails" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Update program details"></asp:Label></asp:HyperLink></li>--%>
+                            <li id="liProgramPlanning" runat="server">
+                                <asp:HyperLink ID="hlProgramPlanning" runat="server"><span class="fa fa-caret-right" id="spanProgramPlanning" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Program Planning"></asp:Label></asp:HyperLink></li>
+                            <%--<li id="liSetProgramThreshold" runat="server">
+                                <asp:HyperLink ID="hlSetProgramThreshold" runat="server"><span class="fa fa-caret-right" id="spanSetProgramThreshold" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Set Program Threshold"></asp:Label></asp:HyperLink></li>--%>
+                        </ul>
+                    </li>
+
+
+                    <li><a href="javascript:void(0);" data-target=".expenses-menu" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-dollar"></i>&nbsp;<asp:Label runat="server" Text="Expenses"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li>
+                        <ul class="expenses-menu nav nav-list collapse in">
+                            <li id="liAllocateExpenses" runat="server">
+                                <asp:HyperLink ID="hlAllocateExpenses1" runat="server"><span class="fa fa-caret-right" id="spanAllocateExpenses" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Allocate Expenses"></asp:Label></asp:HyperLink></li>
+                            <li id="liDeallocateExpenses" runat="server">
+                                <asp:HyperLink ID="hlDeallocateExpenses" runat="server"><span class="fa fa-caret-right" id="spanDeallocateExpenses" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Deallocate Expenses"></asp:Label></asp:HyperLink></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="javascript:void(0);" data-target=".report-menu" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-file"></i>&nbsp;<asp:Label runat="server" Text="Reports"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li>
+                        <ul class="report-menu nav nav-list collapse in">
+                            <li id="liCalendarView" runat="server">
+                                <asp:HyperLink ID="hlCalendarView" runat="server"><span class="fa fa-caret-right" id="spanCalendarView" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Calendar View"></asp:Label></asp:HyperLink></li>
+                            <li id="liRegionalViewByBrand" runat="server">
+                                <asp:HyperLink ID="hlRegionalViewByBrand" runat="server"><span class="fa fa-caret-right" id="spanRegionalViewByBrand" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Regional View by Brand"></asp:Label></asp:HyperLink></li>
+                            <li id="liActualSpend" runat="server">
+                                <asp:HyperLink ID="hlActualSpend" runat="server"><span class="fa fa-caret-right" id="spanActualSpend" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Actual spend"></asp:Label></asp:HyperLink></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="javascript:void(0);" data-target=".admin-menu" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-user"></i>&nbsp;<asp:Label runat="server" Text="Admin"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li>
+                        <ul class="admin-menu nav nav-list collapse in">
+                            <%-- <li id="liProfile" runat="server">
+                                <asp:HyperLink ID="hlProfile" runat="server"><span class="fa fa-caret-right" id="spanProfile" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Profile"></asp:Label></asp:HyperLink></li>
+                            <li id="liChangePasword" runat="server">
+                                <asp:HyperLink ID="hlChangePasword" runat="server"><span class="fa fa-caret-right" id="spanChangePasword" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Change Password"></asp:Label></asp:HyperLink></li>--%>
+                            <li id="liSKUImport" runat="server">
+                                <asp:HyperLink ID="hlSKU" runat="server"><span class="fa fa-caret-right" id="spanSKU" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Import Master SKU List"></asp:Label></asp:HyperLink></li>
+                            <li id="liImportVolData" runat="server">
+                                <asp:HyperLink ID="hlImportVolData" runat="server"><span class="fa fa-caret-right" id="spanImportVolData" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Import Volume Data"></asp:Label></asp:HyperLink></li>
+                            <li id="liImportExpenseData" runat="server">
+                                <asp:HyperLink ID="hlImportExpenseData" runat="server"><span class="fa fa-caret-right" id="spanImportExpenseData" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Import Expense Data"></asp:Label></asp:HyperLink></li>
+                            <%--<li id="liImportProgramData" runat="server">
+                                <asp:HyperLink ID="hlImportProgramData" runat="server"><span class="fa fa-caret-right" id="spanImportProgramData" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Import Program Data"></asp:Label></asp:HyperLink></li>--%>
+                            <li id="liFiscalYearData" runat="server">
+                                <asp:HyperLink ID="hlFiscalYearData" runat="server"><span class="fa fa-caret-right" id="spanFiscalYearData" runat="server"></span>&nbsp;<asp:Label runat="server" Text="Fiscal Year Data"></asp:Label></asp:HyperLink></li>
+                            <li id="liManageUsers" runat="server">
+                                <asp:HyperLink ID="hlManageUsers" runat="server"><span class="fa fa-caret-right" id="spanManageUsers" runat="server"></span>&nbsp;<span>Manage Users</span></asp:HyperLink></li>
+                            <li id="liManageRoles" runat="server">
+                                <asp:HyperLink ID="hlManageRoles" runat="server"><span class="fa fa-caret-right" id="spanManageRoles" runat="server"></span>&nbsp;<span>Manage Roles</span></asp:HyperLink></li>
+                        </ul>
+                    </li>
+
+                    <%-- <li id="liMastersData" runat="server"><a href="javascript:void(0);" data-target=".reports-menu" class="nav-header leftmenuheader" data-toggle="collapse"><i class="fa fa-fw fa-wrench"></i>&nbsp;<asp:Label runat="server" Text="MANAGEMENT"></asp:Label><i class="fa fa-angle-right pull-right"></i></a></li>
+                    <li id="liMastersDataLinks" runat="server">
+                        <ul class="reports-menu nav nav-list collapse in">
+                            
+                        </ul>
+                    </li>--%>
+                </ul>
+            </div>
+            <div>
+            </div>
+            <div class="content">
+                <div class="header">
+                    <div id="h2PageTitle" class="page-title" runat="server"></div>
+                    <ul class="breadcrumb" id="ulbreadCrumb" runat="server">
+                        <li><a id="aHome" runat="server"><i class="fa fa-home"></i></a></li>
+                        <li id="libreadcrumb_1" runat="server" visible="false"><a id="abreadcrumb_1" runat="server"></a></li>
+                        <li id="libreadcrumb_2" runat="server" visible="false"><a id="abreadcrumb_2" runat="server"></a></li>
+                        <li id="libreadcrumb_3" runat="server" visible="false"><a id="abreadcrumb_3" runat="server"></a></li>
+                    </ul>
+                </div>
+                <hr class="margin-zero" />
+                <div class="main-content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <div class="spacer20px"></div>
+                </div>
+            </div>
+            <a id="downloadlinktemp"></a>
+        </div>
+        <footer>
+            <hr />
+            <p>© <%=DateTime.Now.Year%> </p>
+        </footer>
+        <div id="divSessionConfirmationMessage" style="display: none; z-index: 222222222222222!important;" data-backdrop="static" data-keyboard="false" class="modal modal-fade in">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #71777d; color: #fff;">
+                        <h4>Session Expiring</h4>
+                    </div>
+                    <div class="modal-body">
+                        Your session will expire in 10 mins. Do you want to reset the session?
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button CssClass="btn btn-primary" ID="btnSessionContinue" runat="server" OnClientClick="return ResetSession(true);" Text="Yes"></asp:Button>
+                        <asp:Button CssClass="btn btn-primary" ID="btnSessionEnd" runat="server" OnClientClick="return ResetSession(false);" Text="No"></asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divSessionExpired" style="display: none; z-index: 222222222222222!important;" data-backdrop="static" data-keyboard="false" class="modal modal-fade in">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: #71777d; color: #fff;">
+                        <h4>Session Expired</h4>
+                    </div>
+                    <div class="modal-body">
+                        Your session is expired. Please login to continue.
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-primary" id="btnSessionExpired" href="login.aspx">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property_buttons_container" style="display: none;">
+            <div id="divEquipmentSection" style="display: none;">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <i class="fa fa-chevron-circle-down pull-right" id="idivEquipmentSection" aria-hidden="true"></i>
+            </div>
+            <div id="divPropertySection" style="display: none;">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                <i class="fa fa-chevron-circle-down pull-right" id="idivPropertySection" aria-hidden="true"></i>
+            </div>
+        </div>
+
+
+        <div id="dvAddEditProgramPopupMaster" style="display: none; top: 30px;" class="modal modal-fade in">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #71777d; color: #fff;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="font-size: 13px;">Add Program</h4>
+                </div>
+                <div class="modal-body modalbody_extra">
+                    <div class="table-responsive" style="overflow: hidden">
+                        <div class="col-md-6 nopadding">
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Program Type Name <span class="errorMessage">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtProgramName" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:RequiredFieldValidator Display="Dynamic" runat="server" ValidationGroup="valProgramDetailsMaster" SetFocusOnError="true"
+                                        CssClass="errorMessage" ControlToValidate="txtProgramName" Text="Field is required"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Program Type <span class="errorMessage">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlProgramTypeMaster" runat="server" CssClass="form-control" onchange="return GetProgramCostFieldsByType(2);"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator Display="Dynamic" runat="server" ValidationGroup="valProgramDetailsMaster" SetFocusOnError="true" CssClass="errorMessage"
+                                        ControlToValidate="ddlProgramTypeMaster" InitialValue="0" Text="Field is required"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>ATL/BTL <span class="errorMessage">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlATL_BTLMaster" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator Display="Dynamic" runat="server" ValidationGroup="valProgramDetailsMaster" SetFocusOnError="true" CssClass="errorMessage"
+                                        ControlToValidate="ddlATL_BTLMaster" InitialValue="0" Text="Field is required"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Status <span class="errorMessage">*</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlProgramStatusMaster" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator Display="Dynamic" runat="server" ValidationGroup="valProgramDetailsMaster" SetFocusOnError="true" CssClass="errorMessage"
+                                        ControlToValidate="ddlProgramStatusMaster" InitialValue="0" Text="Field is required"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Depth per Unit</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtDepthLTOorBAM" runat="server" data-float="true" autocomplete="false"
+                                        CssClass="form-control text-right calculateTotalProgramSpend" onchange="CalculateVariableCost();"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Forecast Case Sales (base)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtForecastCaseSalesBase" runat="server" data-float="true" CssClass="form-control text-right calculateTotalProgramSpend" 
+                                        autocomplete="false" onchange="CalculateForecastTotalCaseSalesPhyCs();"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Forecast Case Sales (lift)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtForecastCaseSalesLift" runat="server" data-float="true" CssClass="form-control text-right calculateTotalProgramSpend" 
+                                        autocomplete="false" onchange="CalculateForecastTotalCaseSalesPhyCs();"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Forecast Total Sales (Phys)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtForecastTotalCaseSalesPhysCs" runat="server" data-float="true" ReadOnly="true"
+                                        CssClass="form-control text-right calculateTotalProgramSpend" autocomplete="false"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 nopadding">
+
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Forecast Total Sales (9L)</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtForecastTotalCaseSales9LCsConverted" runat="server" data-float="true" ReadOnly="true"
+                                        CssClass="form-control text-right calculateTotalProgramSpend" autocomplete="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Variable Cost</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtVariableCostPerCase" runat="server" data-float="true" ReadOnly="true"
+                                        CssClass="form-control text-right calculateTotalProgramSpend" autocomplete="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>UpFront Fees</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtUpFrontFeesforLTOorBAM" runat="server" data-float="true" 
+                                        CssClass="form-control text-right calculateTotalProgramSpend" autocomplete="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>% Redemption</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtPercentRedemptionRateforBAMonly" runat="server" data-float="true" autocomplete="false" 
+                                        CssClass="form-control text-right calculateTotalProgramSpend" onchange="CalculateVariableCost();"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Quantity of spend</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtQuantityofSpend" runat="server" data-float="true" 
+                                        CssClass="form-control text-right calculateTotalProgramSpend" autocomplete="false"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Spend per quantity</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtSpendperQuantity" runat="server" data-float="true" autocomplete="false"
+                                        CssClass="form-control text-right calculateTotalProgramSpend"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Other Fixed Cost/Fee</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtOtherFixedCostorFee" runat="server" data-float="true" autocomplete="false"
+                                        CssClass="form-control text-right calculateTotalProgramSpend"></asp:TextBox>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <div class="col-md-6">
+                                    <label>Total Program Spend </label>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <asp:Label ID="lblTotalProgramSpend" runat="server" Text="-"></asp:Label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 nopadding">
+                            <div class="form-group clearfix">
+                                <div class="col-md-3">
+                                    <label>Comments</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <asp:TextBox ID="txtComment" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <asp:Button ID="btnSaveProgram" runat="server" Text="Save" CssClass="btn btn-primary"
+                                ValidationGroup="valProgramDetailsMaster" OnClientClick="return SaveOnlyProgram('valProgramDetailsMaster');" />
+                            <a class="btn btn-default btnback" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            $("[rel=tooltip]").tooltip();
+            $(function () {
+                $('.demo-cancel-click').click(function () { return false; });
+                $(".sidebar-nav").find('ul').find('li').find('a').click(function () {
+                    if ($($(this).find('i.pull-right')).attr('class') == 'fa fa-angle-right pull-right') {
+                        $($(this).find('i.pull-right')).attr('class', 'fa fa-angle-down pull-right');
+                    }
+                    else {
+                        $($(this).find('i.pull-right')).attr('class', 'fa fa-angle-right pull-right');
+                    }
+                });
+            });
+        </script>
+        <script>
+            function showhidefilters() {
+                $("#divfilter").slideToggle();
+                return false;
+            }
+
+            function SlideMenu() {
+                if ($("#sidebar-wrapper").hasClass("left-panel-toggle") == false) {
+                    $("#sidebar-wrapper").toggleClass("left-panel-toggle");
+                    $(".container-fluid").toggleClass("right-panel-toggle");
+                    $("#wrapper").toggleClass("toggled");
+                }
+                else {
+                    $("#sidebar-wrapper").toggleClass("left-panel-toggle");
+                    $(".container-fluid").toggleClass("right-panel-toggle");
+                    $("#wrapper").toggleClass("toggled");
+                }
+            }
+
+            window.addEventListener("online", function (e) {
+                $("#idonlineofflinecolor").removeClass('pointred').addClass('pointgreen');
+                $("#idonlineofflineparent").removeClass('borderpointred').addClass('borderpointgreen');
+            }, true);
+
+            window.addEventListener("offline", function (e) {
+                $("#idonlineofflinecolor").removeClass('pointgreen').addClass('pointred');
+                $("#idonlineofflineparent").removeClass('borderpointgreen').addClass('borderpointred');
+            }, true);
+
+            function ShowLoginExpired(jqXHR, textStatus, errorThrown) {
+                
+                if (jqXHR.status == 403) {
+                    
+                    bootbox.alert({
+                        message: "Sorry, your session has expired. Please login again to continue",
+                        size: 'small',
+                        callback: function () {
+                            window.location.href = "/login.aspx";
+                        }
+                    });
+                }
+                else {
+                    bootbox.alert({
+                        message: "An error occurred",
+                        size: 'small'
+                    });
+                }
+            }
+            var ddlProgramTypes_master = <%= Session["ddlProgramTypes"] %>;
+            var ddlATL_BTL_master = <%= Session["ddlATL_BTL"] %>;
+            var ddlProgramStatus_master = <%= Session["ddlProgramStatus"] %>;
+        </script>
+    </form>
+
+</body>
+</html>
+

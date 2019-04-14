@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{094A84BD-C04D-4781-A746-542A64B95096}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SGWSPromoPlan.DAL</RootNamespace>
+    <AssemblyName>SGWSPromoPlan.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Brand.cs" />
+    <Compile Include="Entities\BusinessType.cs" />
+    <Compile Include="Entities\Chart_GetProductCountByCategory.cs" />
+    <Compile Include="Entities\Expense.cs" />
+    <Compile Include="Entities\Expense_Import.cs" />
+    <Compile Include="Entities\GetSummaryRollup.cs" />
+    <Compile Include="Entities\ParseError.cs" />
+    <Compile Include="Entities\ProgramStatus.cs" />
+    <Compile Include="Entities\ProgramType.cs" />
+    <Compile Include="Entities\Program_ATL_BTL.cs" />
+    <Compile Include="Entities\Province.cs" />
+    <Compile Include="Entities\SGWS_Program.cs" />
+    <Compile Include="Entities\SQLErrorInfo.cs" />
+    <Compile Include="Entities\SuperProgram.cs" />
+    <Compile Include="Entities\Supplier.cs" />
+    <Compile Include="Entities\TMP_ProductInfo.cs" />
+    <Compile Include="Entities\TMP_ProductInfoNew.cs" />
+    <Compile Include="Entities\TMP_ProgramImport.cs" />
+    <Compile Include="Entities\UserMaster.cs" />
+    <Compile Include="Entities\USP_Program_GetProgramSpendData.cs" />
+    <Compile Include="Entities\USP_Reports_GetRegionalViewByBrand.cs" />
+    <Compile Include="Entities\USP_Reports_GetRegionalViewByBrand_Periods.cs" />
+    <Compile Include="IRepository\IBrandRepository.cs" />
+    <Compile Include="IRepository\IBusinessTypeRepository.cs" />
+    <Compile Include="IRepository\ICalendarViewRepository.cs" />
+    <Compile Include="IRepository\IChartRepository.cs" />
+    <Compile Include="IRepository\IExpenseDataRepository.cs" />
+    <Compile Include="IRepository\IManageProgramRepository.cs" />
+    <Compile Include="IRepository\IManageUserRepository.cs" />
+    <Compile Include="IRepository\IMasterSKUListRepository.cs" />
+    <Compile Include="IRepository\IProvinceRepository.cs" />
+    <Compile Include="IRepository\ISupplierRepository.cs" />
+    <Compile Include="IRepository\IVolumeDataRepository.cs" />
+    <Compile Include="log.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BrandRepository.cs" />
+    <Compile Include="Repository\BusinessTypeRepository.cs" />
+    <Compile Include="Repository\CalendarViewRepository.cs" />
+    <Compile Include="Repository\ChartRepository.cs" />
+    <Compile Include="Repository\ExpenseDataRepository.cs" />
+    <Compile Include="Repository\ManageProgramRepository.cs" />
+    <Compile Include="Repository\ManageUserRepository.cs" />
+    <Compile Include="Repository\MasterSKUListRepository.cs" />
+    <Compile Include="Repository\ProvinceRepository.cs" />
+    <Compile Include="Repository\SupplierRepository.cs" />
+    <Compile Include="Repository\VolumeDataRepository.cs" />
+    <Compile Include="SQLFacade.cs" />
+    <Compile Include="SQLOperation\DataReaderExtention.cs" />
+    <Compile Include="SQLOperation\SQLHelper.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
